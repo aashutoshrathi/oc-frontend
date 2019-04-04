@@ -1,3 +1,27 @@
+/* To prevent overlapping of map with other elements */
 #map-canvas {
-  position: sticky;
+  position: sticky !important;
+}
+
+/* So that button is visible */
+.btn-default {
+  background-color: whitesmoke !important;
+  border: solid rgba(3,169,244,.7) !important;
+}
+
+/* For consistent and round buttons */
+#wpcf7-f24-p11-o1 > form > p:nth-child(6) > input {
+  border-radius: 56px !important;
+}
+
+#filter-box .filter i {
+  cursor: pointer;
+  position: absolute !important;
+  top: 8px;
+  right: 2px;
+  bottom: auto;
+  left: auto;
+  z-index: 1;
+  opacity: .3;
+  color: white;
 }
