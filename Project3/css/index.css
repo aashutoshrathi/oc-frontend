@@ -9,6 +9,13 @@ body {
     padding: 0;
     background: #ccc;
   }
+
+  .title {
+    text-align: center;
+    letter-spacing: 0.4rem;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+  }
    
   .nav ul {
     list-style: none;
