@@ -1,73 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
 
 * {
-    font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background: #ccc;
-  }
-
-  .title {
-    text-align: center;
-    letter-spacing: 0.4rem;
-    text-decoration: underline;
-    text-decoration-style: dotted;
-  }
-   
-  .nav ul {
-    list-style: none;
-    background-color: #444;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
-  .nav li {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2em;
-    line-height: 40px;
-    height: 40px;
-    border-bottom: 1px solid #888;
-  }
-   
-  .nav a {
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    transition: .3s background-color;
-  }
-   
-  .nav a:hover {
-    background-color: #005f5f;
-  }
-   
-  .nav a.active {
-    background-color: #fff;
-    color: #444;
-    cursor: default;
-  }
-   
-  @media screen and (min-width: 600px) {
-    .nav li {
-      width: 120px;
-      border-bottom: none;
-      height: 50px;
-      line-height: 50px;
-      font-size: 1.4em;
-    }
-   
-    .nav li {
-      float: left;
-    }
-    .nav ul {
-      overflow: auto;
-      width: 600px;
-      margin: 0 auto;
-    }
-    .nav {
-      background-color: #444;
-    }
-   
-  }
+  margin: 0;
+  padding: 0;
+  background: rgb(32, 32, 32) !important;
+}

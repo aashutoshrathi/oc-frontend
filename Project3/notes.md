@@ -11,4 +11,4 @@
   - DD: Amount of Tickets (1-5)
 - Links to Social on page.
 - Google Map for the location (embedded)
-- A weather widget.
+- A weather widget. :tick:👍

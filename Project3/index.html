@@ -1,40 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+      maximum-scale=1">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="title" content="Brooklyn Outdoor Film Festival">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+      shrink-to-fit=no">
     <title>Brooklyn Outdoor Film Festival</title>
     <link rel="icon" href="assets/favicon.png" type="image/png" />
     <link rel="stylesheet" href="css/index.css" type="text/css" />
-</head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
+  </head>
 
-<!-- https://instant.page/ -->
-<script src="//instant.page/1.1.0" type="module" 
-integrity="sha384-EwBObn5QAxP8f09iemwAJljc+sU+eUXeL9vSBw1eNmVarwhKk2F9vBEpaN9rsrtp">
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+          <img class="d-inline-block" src="assets/favicon.png" width="50px">
+          <strong> Brooklyn Outdoor Film Fest </strong>
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#movies">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#news">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <a class="weatherwidget-io"
+        href="https://forecast7.com/en/40d68n73d94/brooklyn/"
+        data-label_1="BROOKLYN" data-label_2="WEATHER" data-font="Open Sans"
+        data-mode="Current" data-theme="weather_one">BROOKLYN WEATHER</a>
+    </header>
+
+    <footer class="row">
+      <div class="col-lg-4">
+      </div>
+    </footer>
+  </body>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
-
-<body>
-  <header>
-    <div class="nav">
-      <ul>
-        <li><a class="active" href="#home">Home</a></li>
-        <li><a href="#movies">Movies</a></li>
-        <li><a href="#news">News</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </header>
-  <div id="movies">
-    <h1 class="title">Movies</h1>
-  </div>
-  <div id="news">
-    <h1 class="title">News</h1>
-  </div>
-  <div id="contact">
-    <h1 class="title">Contact Us</h1>
-  </div>
-</body>
-
 </html>
