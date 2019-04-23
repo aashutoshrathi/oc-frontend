@@ -10,6 +10,12 @@ body {
   padding: 0;
 }
 
+.tabs {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
   margin-left: 3px;
   margin-top: 30px;
@@ -21,6 +27,10 @@ body {
 
 .content {
   text-align: center;
+}
+
+.rounded {
+  width: 150px;
 }
 
 footer {

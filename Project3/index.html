@@ -16,6 +16,10 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous">
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous">
   </head>
 
   <body>
@@ -50,8 +54,7 @@
         </div>
       </nav>
     </header>
-
-
+    <hr>
     <section class="about" id="about">
       <div class="container">
         <div class="section-intro">
@@ -70,129 +73,234 @@
           up!</p>
       </div>
     </section>
-
+    <hr>
     <section class="movies" id="movies">
       <div class="container">
         <div class="section-intro">
           <h2 class="title">
-            <span>Movies</span>
+            <span>Movies Schedule</span>
           </h2>
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Day 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Day 2</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Day 3</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Day 4</a>
-            </li>
-          </ul>
+          <div class="tabs">
+            <ul class="nav nav-pills">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#day1"
+                  role="tab" aria-selected="false">Day 1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#day2" role="tab"
+                  aria-selected="false">Day 2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#day3" role="tab"
+                  aria-selected="false">Day 3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#day4" role="tab"
+                  aria-selected="false">Day 4</a>
+              </li>
+            </ul>
+          </div>
+          <br>
+          <div class="col-sm-12 col tab-content movie-list">
+            <div class="tab-pane fade show active" id="day1" role="tabpanel">
+              <div class="movie row">
+                <div class="col-sm-3 col-lg-2 thumbnail">
+                  <img class="rounded" src="assets/cap_marvel.jpg" alt="Captain
+                    Marvel">
+                </div>
+                <div class="col-sm-9 col-lg-10 details">
+                  <ul class="list-unstyled list-inline type">
+                    <li class="list-inline-item">Action</li>
+                    <li class="list-inline-item">Sci-Fi</li>
+                  </ul>
+                  <h3 class="title">Captain Marvel</h3>
+                  <p class="desc">A failed reporter is bonded to an alien
+                    entity, one of many entities who have invaded Earth. But the
+                    entity takes a liking to Earth and decides to protect it.</p>
+                  <ul class="list-unstyled list-inline meta">
+                    <li class="list-inline-item"><i class="far fa-calendar-alt"></i>
+                      2018</li>
+                    <li class="list-inline-item"> <i class="far fa-clock"></i>
+                      1h 52min</li>
+                    <li class="list-inline-item"><i class="far fa-star"></i>
+                      6.8/10</li>
+                    <li class="list-inline-item"><a href="#" data-toggle="modal"
+                        data-target="#movie1"><i class="far fa-play-circle"></i>
+                        Watch Trailer</a></li>
+                  </ul>
+                </div>
+              </div>
+              <br>
+              <div class="movie row">
+                <div class="col-sm-3 col-lg-2 thumbnail">
+                  <img class="rounded" src="assets/dumbo.jpg" alt="Dumbo">
+                </div>
+                <div class="col-sm-9 col-lg-10 details">
+                  <h3 class="title">Dumbo</h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <h2 class="title">
-              <span>Contact Us</span>
-            </h2>
-          </div>
-          <div class="form-group row">
-            <label for="name" class="col-lg-2 control-label">Name:</label>
-            <div class="col-lg-10">
-              <input type="name" class="form-control" id="text">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="email" class="col-lg-2 control-label">Email:</label>
-            <div class="col-lg-8">
-              <input type="email" class="form-control" id="email">
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-lg-4 row">
-              <label for="movies" class="col-lg-2 control-label">Movie:</label>
-              <div class="col-lg-10">
-                <select id="movies" class="form-control">
-                  <option>Avengers: Endgame</option>
-                  <option>The Curse of La Llorona</option>
-                  <option>Shazam!</option>
-                  <option>Breakthrough</option>
-                  <option>Captain Marvel</option>
-                  <option>Iron Man 3</option>
-                  <option>Ant Man and the Wasp</option>
-                  <option>Avengers: Infinity Wars</option>
-                  <option>Shawshank Redemption</option>
-                  <option></option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group col-lg-4 row">
-              <label for="tickets" class="col-lg-2 control-label">Tickets:</label>
-              <div class="col-lg-10">
-                <select id="tickets" class="form-control">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <button class="pull-right submit btn btn-primary center">Submit</button>
-          </div>
-        </form>
-      </div>
-
-    </section>
-
-    <section id="find-us">
-      <div class="container">
+    </div>
+  </section>
+  <hr>
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-intro">
         <h2 class="title">
-          <span>Find Us</span>
+          <span>News</span>
         </h2>
         <div class="row">
-          <div class="col-lg-8 col-sm-8">
-            <div class="mapouter">
-              <div class="gmap_canvas">
-                <iframe width="690"
-                  height="373" id="gmap_canvas"
-                  src="https://maps.google.com/maps?q=Brooklyn%20Bridge%20Park&t=k&z=13&ie=UTF8&iwloc=&output=embed"
-                  frameborder="0" scrolling="no" marginheight="0"
-                  marginwidth="0"></iframe>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural
+                  lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural
+                  lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Read More</a>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <hr>
-      <footer>
-        <div class="container">
-          All Rights Reserved - Brooklyn Film Festival © 2020
+        <br>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural
+                  lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural
+                  lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
         </div>
-      </footer>
-    </body>
+      </div>
+    </div>
+  </section>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
-  </html>
+  <hr>
+  <section id="contact">
+    <div class="container">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <h2 class="title">
+            <span>Contact Us</span>
+          </h2>
+        </div>
+        <div class="form-group row">
+          <label for="name" class="col-lg-2 control-label">Name:</label>
+          <div class="col-lg-8">
+            <input type="name" class="form-control" id="text">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-lg-2 control-label">Email:</label>
+          <div class="col-lg-8">
+            <input type="email" class="form-control" id="email">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-lg-4 row">
+            <label for="movies" class="col-lg-2 control-label">Movie:</label>
+            <div class="col-lg-10">
+              <select id="movies" class="form-control">
+                <option>Avengers: Endgame</option>
+                <option>The Curse of La Llorona</option>
+                <option>Shazam!</option>
+                <option>Breakthrough</option>
+                <option>Captain Marvel</option>
+                <option>Iron Man 3</option>
+                <option>Ant Man and the Wasp</option>
+                <option>Avengers: Infinity Wars</option>
+                <option>Shawshank Redemption</option>
+                <option>Little Woods</option>
+                <option>Amazing Grace</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col-lg-4 row">
+            <label for="tickets" class="col-lg-2 control-label">Tickets:</label>
+            <div class="col-lg-10">
+              <select id="tickets" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="pull-right submit btn btn-primary center">Submit</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <hr>
+  <section id="find-us">
+    <div class="container">
+      <h2 class="title">
+        <span>Find Us</span>
+      </h2>
+      <div class="row tabs">
+        <div class="col-offset-4 col-lg-8 col-sm-8">
+          <div class="mapouter">
+            <div class="gmap_canvas">
+              <iframe width="690"
+                height="373" id="gmap_canvas"
+                src="https://maps.google.com/maps?q=Brooklyn%20Bridge%20Park&t=k&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0" scrolling="no" marginheight="0"
+                marginwidth="0"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <footer>
+      <div class="container">
+        All Rights Reserved - Brooklyn Film Festival © 2020
+      </div>
+    </footer>
+  </body>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</html>
