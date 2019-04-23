@@ -1,11 +1,29 @@
-@import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import url("https://fonts.googleapis.com/css?family=Amaranth");
 
 * {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Amaranth", sans-serif;
+  letter-spacing: 1px;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: rgb(32, 32, 32) !important;
+}
+
+.title {
+  margin-left: 3px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  vertical-align: middle;
+  text-emphasis: emphasis;
+  text-align: center;
+}
+
+.content {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  margin: 10px;
 }
