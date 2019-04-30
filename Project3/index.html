@@ -91,13 +91,12 @@
       </a>
     </div>
 
-    <hr>
     <section class="about" id="about">
       <div class="container">
         <div class="section-intro">
           <h1 class="title">
             <span>About</span>
-          </h2>
+          </h1>
         </div>
         <p class="content">We are organizators
           of the Brooklyn outdoor film festival which will take place from
@@ -105,8 +104,9 @@
             5<sup>th</sup>
             through 8<sup>th</sup>, from 6pm to midnight! at the Brooklyn Bridge
             Park.
-          </strong> Tickets are free for everyone and all filmlovers are
-          invited. We can hold upto <strong>5000</strong> movie lovers, so hurry
+          </strong><br> Tickets are free for everyone and all filmlovers are
+          invited. <br>We can hold upto <strong>5000</strong> movie lovers, so
+          hurry
           up!</p>
       </div>
     </section>
@@ -116,7 +116,7 @@
         <div class="section-intro">
           <h1 class="title">
             <span>Movies Schedule</span>
-          </h2>
+          </h1>
           <div class="tabs">
             <ul class="nav nav-pills">
               <li class="nav-item">
@@ -219,7 +219,7 @@
       <div class="section-intro">
         <h1 class="title">
           <span>News</span>
-        </h2>
+        </h1>
         <div class="row">
           <div class="col-sm-6">
             <div class="card">
@@ -276,7 +276,7 @@
         <div class="form-group">
           <h1 class="title">
             <span>Contact Us</span>
-          </h2>
+          </h1>
         </div>
         <div class="form-group row">
           <label for="name" class="col-lg-2 control-label">Name:</label>
@@ -324,8 +324,8 @@
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <button class="pull-right submit btn btn-primary center">Submit</button>
+        <div class="form-actions">
+          <button class="pull-right submit btn btn-primary">Prebook Tickets</button>
         </div>
       </form>
     </div>
@@ -335,7 +335,7 @@
     <div class="container">
       <h1 class="title">
         <span>Find Us</span>
-      </h2>
+      </h1>
       <div class="mapouter">
         <div class="gmap_canvas">
           <iframe width="690"
@@ -346,13 +346,35 @@
         </div>
       </div>
     </section>
-    <hr>
+    <br>
     <footer>
       <div class="container">
         All Rights Reserved - Brooklyn Film Festival © 2020
       </div>
     </footer>
   </body>
+
+
+  <div class="modal fade" id="movie1" tabindex="-1" role="dialog"
+    aria-labelledby="Movie 1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="Movie 1">Captain Marvel</h5>
+          <button type="button" class="close" data-dismiss="modal"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe width="100%" height="300"
+            src="https://www.youtube.com/embed/Z1BCujX3pw8" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope;
+            picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

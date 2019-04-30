@@ -28,6 +28,19 @@ body {
 
 .content {
   text-align: center;
+  width: 70%;
+  letter-spacing: 2px;
+  line-height: 1.6;
+  font-size: 1.3rem;
+}
+
+.nav {
+  color: white;
+}
+
+.carousel {
+  height: 50vh;
+  overflow: hidden;
 }
 
 .rounded {
@@ -35,8 +48,16 @@ body {
 }
 
 footer {
+  padding: 0.5rem;
+  -webkit-box-shadow: 10px 0px 15px -5px #d4d1d1;
+          box-shadow: 10px 0px 15px -5px #d4d1d1;
   text-align: center;
-  margin: 10px;
+}
+
+.form-actions {
+  margin: 0;
+  background-color: transparent;
+  text-align: center;
 }
 
 .container {
