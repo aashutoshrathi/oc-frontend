@@ -1,5 +1,5 @@
-- Brooklyn Festival Logo
-- http://www.colorsontheweb.com/ for color pallete generation.
+<!-- - Brooklyn Festival Logo -->
+<!-- - http://www.colorsontheweb.com/ for color pallete generation. -->
 <!-- - 3 Movies/day for 4 days -->
 <!-- - Image Grid (using Bootstrap Tabs) -->
 - Modal Video Trailer
@@ -16,7 +16,7 @@
 23 April
 
 - Slider at the very top
-- Movies -> Movies Schedule
+<!-- - Movies -> Movies Schedule -->
 - Increase Font Sizes
 - Movies Info (Time, Genere)
 - Form needs some optimzations and tweaks

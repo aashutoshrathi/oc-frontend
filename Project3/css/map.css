@@ -4,10 +4,62 @@
   height: 373px;
   width: 690px;
 }
+
 .gmap_canvas {
   align-content: center;
   overflow: hidden;
   background: none !important;
   height: 373px;
   width: 690px;
+}
+
+@media (max-width: 992px) {
+  .mapouter {
+    position: relative;
+    text-align: right;
+    height: 273px;
+    width: 490px;
+  }
+
+  .gmap_canvas {
+    align-content: center;
+    overflow: hidden;
+    background: none !important;
+    height: 273px;
+    width: 490px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mapouter {
+    position: relative;
+    text-align: right;
+    height: 200px;
+    width: 420px;
+  }
+
+  .gmap_canvas {
+    align-content: center;
+    overflow: hidden;
+    background: none !important;
+    height: 200px;
+    width: 420px;
+  }
+}
+
+@media (max-width: 320px) {
+  .mapouter {
+    position: relative;
+    text-align: right;
+    height: 200px;
+    width: 250px;
+  }
+
+  .gmap_canvas {
+    align-content: center;
+    overflow: hidden;
+    background: none !important;
+    height: 200px;
+    width: 250px;
+  }
 }
