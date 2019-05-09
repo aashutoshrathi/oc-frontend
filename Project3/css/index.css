@@ -5,9 +5,24 @@
   letter-spacing: 1px;
 }
 
+html {
+  scroll-behavior: smooth;
+  /* For smooth scrolling */
+}
+
 body {
   margin: 0;
   padding: 0;
+}
+
+/* Pill Buttons */
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+  border-radius: 23px !important;
 }
 
 .tabs {
@@ -50,7 +65,7 @@ body {
 footer {
   padding: 0.5rem;
   -webkit-box-shadow: 10px 0px 15px -5px #d4d1d1;
-          box-shadow: 10px 0px 15px -5px #d4d1d1;
+  box-shadow: 10px 0px 15px -5px #d4d1d1;
   text-align: center;
 }
 

@@ -1,7 +1,11 @@
 movies = {
   "1": {
     name: "Captain Marvel",
-    trailer: "https://www.youtube.com/watch?v=Z1BCujX3pw8"
+    trailer: "https://www.youtube.com/embed/Z1BCujX3pw8"
+  },
+  "2": {
+    name: "Dumbo",
+    trailer: "https://www.youtube.com/embed/7NiYVoqBt-8"
   }
 };
 

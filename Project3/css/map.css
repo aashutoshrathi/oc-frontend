@@ -47,6 +47,23 @@
   }
 }
 
+@media (max-width: 576px) {
+  .mapouter {
+    position: relative;
+    text-align: right;
+    height: 200px;
+    width: 300px;
+  }
+
+  .gmap_canvas {
+    align-content: center;
+    overflow: hidden;
+    background: none !important;
+    height: 200px;
+    width: 300px;
+  }
+}
+
 @media (max-width: 320px) {
   .mapouter {
     position: relative;
