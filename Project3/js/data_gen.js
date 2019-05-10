@@ -179,6 +179,7 @@ movies = {
 
 function makeModals() {
   body = document.getElementsByTagName("body")[0];
+  opt = document.getElementById('movies-opt');
   for (i in movies) {
     code = ` <div class="modal fade" id="movie${i}" tabindex="-1" role="dialog"
                 aria-labelledby="Movie ${i}" aria-hidden="true">
@@ -236,9 +237,11 @@ function makeModals() {
                     </div>
                     </div>
                   </div><br>`;
+    option = `<option>${movies[i].name}</option>`;
     d_id = "day" + Math.ceil(i / 4);
     // console.log(d_id);
     day = document.getElementById(d_id);
+    opt.insertAdjacentHTML("afterbegin", option);
     day.insertAdjacentHTML("afterbegin", movie_item);
     body.insertAdjacentHTML("afterbegin", code);
   }
