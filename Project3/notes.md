@@ -30,8 +30,8 @@
 [x] Movies Info (Time, Genere)
 [x] Map should be centered and responsive.
 [x] Increase the nav size.
-[ ] Form needs some optimzations and tweaks
-[ ] Links to Social on page.
+[x] Form needs some optimzations and tweaks
+[x] Links to Social on page.
 
 ## Timeline Discussed:
 

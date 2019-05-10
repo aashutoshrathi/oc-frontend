@@ -19,10 +19,11 @@ body {
 .btn-default,
 .btn-primary,
 .btn-success,
+.nav-link,
 .btn-info,
 .btn-warning,
 .btn-danger {
-  border-radius: 23px !important;
+  border-radius: 2rem !important;
 }
 
 .tabs {
@@ -79,4 +80,71 @@ footer {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+div {
+  text-align: center;
+}
+
+.social-links {
+  color: black;
+}
+
+.qty .count {
+  color: #000;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 30px;
+  padding: 0 2px;
+  min-width: 35px;
+  text-align: center;
+}
+.qty .plus {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  font: 30px/1 Arial, sans-serif;
+  text-align: center;
+  border-radius: 50%;
+}
+.qty .minus {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  font: 30px/1 Arial, sans-serif;
+  text-align: center;
+  border-radius: 50%;
+  background-clip: padding-box;
+}
+.minus:hover {
+  background-color: #dd5330 !important;
+}
+.plus:hover {
+  background-color: #00C851 !important;
+}
+/*Prevent text selection*/
+span {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+input {
+  border: 0;
+  width: 2%;
+}
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input:disabled {
+  background-color: white;
 }
