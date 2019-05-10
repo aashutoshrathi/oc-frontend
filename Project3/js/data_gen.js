@@ -202,7 +202,8 @@ function makeModals() {
                 </div>
                 </div>
             </div>`;
-    movie_item = `<div class="card border-secondary mb-3">
+
+    movie_item = `<div class="card border-secondary">
                     <div class="card-body">
                       <div class="movie row">
                       <div class="col-sm-3 col-lg-2 thumbnail">
