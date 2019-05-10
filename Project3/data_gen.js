@@ -87,6 +87,28 @@ movies = {
     rating: 8.8,
     tags: ["Drama", "Crime"]
   },
+  "9": {
+    name: "Forrest Gump",
+    trailer: "https://www.youtube.com/embed/uPIEn0M8su0",
+    pic: "gump.jpg",
+    desc:
+      "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
+    year: 1994,
+    duration: "2h 22min",
+    rating: 8.8,
+    tags: ["Drama", "Romance"]
+  },
+  "10": {
+    name: "Inception",
+    trailer: "https://www.youtube.com/embed/8hP9D6kZseM",
+    pic: "inception.jpg",
+    desc:
+      "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+    year: 2010,
+    duration: "2h 28min",
+    rating: 8.8,
+    tags: ["Action", "Sci-Fi"]
+  }
 };
 
 function makeModals() {
@@ -144,7 +166,7 @@ function makeModals() {
                     </div>
                   </div><br>`;
     d_id = "day" + Math.ceil(i / 4);
-    console.log(d_id);
+    // console.log(d_id);
     day = document.getElementById(d_id);
     day.insertAdjacentHTML("afterbegin", movie_item);
     body.insertAdjacentHTML("afterbegin", code);
