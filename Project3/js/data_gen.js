@@ -108,6 +108,72 @@ movies = {
     duration: "2h 28min",
     rating: 8.8,
     tags: ["Action", "Sci-Fi"]
+  },
+  "11": {
+    name: "City of God",
+    trailer: "https://www.youtube.com/embed/dcUOO4Itgmw",
+    pic: "city-of-god.jpg",
+    desc:
+      "In the slums of Rio, two kids' paths diverge as one struggles to become a photographer and the other a kingpin.",
+    year: 2002,
+    duration: "2h 10min",
+    rating: 8.6,
+    tags: ["Drama", "Crime"]
+  },
+  "12": {
+    name: "Interstellar ",
+    trailer: "https://www.youtube.com/embed/zSWdZVtXT7E",
+    pic: "interstellar.jpg",
+    desc:
+      "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    year: 2014,
+    duration: "2h 49min",
+    rating: 8.6,
+    tags: ["Drama", "Sci-Fi"]
+  },
+  "13": {
+    name: "The Prestige",
+    trailer: "https://www.youtube.com/embed/ijXruSzfGEc",
+    pic: "prestige.jpg",
+    desc:
+      "After a tragic accident, two stage magicians engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.",
+    year: 2006,
+    duration: "2h 10min",
+    rating: 8.5,
+    tags: ["Mystery", "Sci-Fi"]
+  },
+  "14": {
+    name: "Downfall",
+    trailer: "https://www.youtube.com/embed/Bp1RXmM1-60",
+    pic: "downfall.jpg",
+    desc:
+      "Traudl Junge, the final secretary for Adolf Hitler, tells of the Nazi dictator's final days in his Berlin bunker at the end of WWII.",
+    year: 2004,
+    duration: "2h 36min",
+    rating: 8.2,
+    tags: ["Drama", "History"]
+  },
+  "15": {
+    name: "Batman Begins",
+    trailer: "https://www.youtube.com/embed/neY2xVmOfUM",
+    pic: "bb.jpg",
+    desc:
+      "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
+    year: 2005,
+    duration: "2h 20min",
+    rating: 8.2,
+    tags: ["Action", "Adventure"]
+  },
+  "16": {
+    name: "3 Idiots",
+    trailer: "https://www.youtube.com/embed/xvszmNXdM4w",
+    pic: "3idiots.jpg",
+    desc:
+      "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them idiots.",
+    year: 2009,
+    duration: "2h 50min",
+    rating: 8.4,
+    tags: ["Comedy", "Drama"]
   }
 };
 
