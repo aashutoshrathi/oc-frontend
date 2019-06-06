@@ -50,6 +50,7 @@ INSERT INTO `address` (`id`, `userId`, `street`, `apartmentNumber`, `city`, `pos
 (11, 8, 'Panchvati, Senthi', 87, 'Rajasthan', '312613', 1),
 (12, 9, 'Gokuldham, Bombay', 996, 'Maharashtra', '789020', 1),
 (13, 10, 'Raj Vihar, Shivnagar', 872, 'Goa', '896520', 1);
+(14, 10, 'Parvati Nagar, Shivnagar', 342, 'Goa', '892420', 0);
 
 -- --------------------------------------------------------
 
