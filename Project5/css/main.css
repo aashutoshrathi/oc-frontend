@@ -3,3 +3,7 @@
 * {
     font-family: 'Noto Sans JP', sans-serif !important;
 }
+
+blockquote footer::before {
+    content: "~ " !important;
+}

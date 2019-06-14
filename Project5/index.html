@@ -18,38 +18,39 @@
 
     <body>
         <h1 class='uk-text-center uk-text-emphasis'>Quote Generator</h1>
-        <nav class="uk-navbar-container uk-margin" uk-navbar>
-                <div class="uk-navbar-center">
-            
-                    <div class="uk-navbar-center-left"><div>
-                        <ul class="uk-navbar-nav">
-                            <li class="uk-active"><a href="#">Active</a></li>
-                            <li>
-                                <a href="#">Parent</a>
-                                <div class="uk-navbar-dropdown">
-                                    <ul class="uk-nav uk-navbar-dropdown-nav">
-                                        <li class="uk-active"><a href="#">Active</a></li>
-                                        <li><a href="#">Item</a></li>
-                                        <li><a href="#">Item</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div></div>
-                    <div class="uk-navbar-center-right"><div>
-                        <ul class="uk-navbar-nav">
-                            <li><a href="#">Item</a></li>
-                        </ul>
-                    </div>
-                </div>
-                </div>
-            </nav>
-            <br/>
-            <hr/>
-            <a class="uk-align-center uk-text-center uk-margin-small uk-border-pill uk-button uk-button-secondary">Generate</a>
+        <br/>
+        <div class="centeralize">
+            <label>
+                <input class="uk-checkbox" type="checkbox" checked> 
+                Motivational 🏋️ </label>
+            <label>
+                <input class="uk-checkbox" type="checkbox">
+                 Love 💕
+            </label>
+            <div uk-form-custom="target: > * > span:first-child">
+                <select class="uk-select" id="form-stacked-select">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+                <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                    <span></span>
+                    <span uk-icon="icon: chevron-down"></span>
+                </button>
+            </div>
+        </div>  
+        <hr/>
+        <button class="uk-button uk-align-center uk-margin-top uk-border-pill
+        uk-button-secondary" type="submit">Generate</button>
+        <div class="uk-card uk-align-center uk-width-1-2 uk-box-shadow-large uk-border-rounded uk-card-default uk-card-body">
+            <blockquote cite="#">
+                <p class="uk-margin-small-bottom">The blockquote element represents content that is quoted from another source, <br>
+                    optionally with a citation which must be within a footer or cite element.</p>
+                <footer>Someone famous in <cite><a href="#">Source Title</a></cite></footer>
+            </blockquote>
+        </div>
     </body>
+
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
     <!-- UIkit JS -->
     <script src="js/uikit.min.js"></script>
     <script src="js/uikit-icons.min.js"></script>
