@@ -17,17 +17,17 @@
         integrity="sha384-EwBObn5QAxP8f09iemwAJljc+sU+eUXeL9vSBw1eNmVarwhKk2F9vBEpaN9rsrtp"></script>
 
     <body>
-        <h1 class='uk-text-center uk-text-emphasis'>Quote Generator</h1>
+        <h1 class='uk-text-center uk-padding-small uk-text-emphasis'>Quote Generator</h1>
         <br/>
         <div class="centeralize">
-            <label>
-                <input class="uk-checkbox" type="checkbox" checked> 
+            <label class="uk-padding-small uk-padding-remove-vertical">
+                <input class="uk-checkbox uk-text-emphasis" type="checkbox" checked> 
                 Motivational 🏋️ </label>
-            <label>
+            <label class="uk-padding-small uk-padding-remove-vertical uk-text-emphasis">
                 <input class="uk-checkbox" type="checkbox">
                  Love 💕
             </label>
-            <div uk-form-custom="target: > * > span:first-child">
+            <div class="uk-padding-small uk-padding-remove-vertical" uk-form-custom="target: > * > span:first-child">
                 <select class="uk-select" id="form-stacked-select">
                     <option>1</option>
                     <option>2</option>
@@ -41,11 +41,11 @@
         <hr/>
         <button class="uk-button uk-align-center uk-margin-top uk-border-pill
         uk-button-secondary" type="submit">Generate</button>
-        <div class="uk-card uk-align-center uk-width-1-2 uk-box-shadow-large uk-border-rounded uk-card-default uk-card-body">
+        <div class="uk-card uk-align-center uk-width-2-3 uk-box-shadow-large uk-border-rounded uk-card-default uk-card-body">
             <blockquote cite="#">
                 <p class="uk-margin-small-bottom">The blockquote element represents content that is quoted from another source, <br>
                     optionally with a citation which must be within a footer or cite element.</p>
-                <footer>Someone famous in <cite><a href="#">Source Title</a></cite></footer>
+                <footer>Randomly <cite><a href="#">Generated Artist</a></cite></footer>
             </blockquote>
         </div>
     </body>
