@@ -9,7 +9,7 @@
         <!-- UIkit CSS -->
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css">
-        <link rel="icon" href="media/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="media/favicon.png" type="image/png" />
         <link rel="stylesheet" href="css/main.css" type="text/css">
     </head>
     <!-- https://instant.page/ -->
@@ -19,12 +19,12 @@
     <body>
         <h1 class='uk-text-center uk-padding-small uk-text-emphasis'>Quote Generator</h1>
         <br/>
-        <div class="centeralize">
+        <form class="centeralize">
             <label class="uk-padding-small uk-padding-remove-vertical">
-                <input class="uk-checkbox uk-text-emphasis" type="checkbox" checked> 
+                <input class="uk-checkbox uk-text-emphasis" id="motivation-checkbox" type="checkbox" checked> 
                 Motivational 🏋️ </label>
             <label class="uk-padding-small uk-padding-remove-vertical uk-text-emphasis">
-                <input class="uk-checkbox" type="checkbox">
+                <input class="uk-checkbox" id="love-checkbox" type="checkbox">
                  Love 💕
             </label>
             <div class="uk-padding-small uk-padding-remove-vertical" uk-form-custom="target: > * > span:first-child">
@@ -40,10 +40,10 @@
                     <span uk-icon="icon: chevron-down"></span>
                 </button>
             </div>
-        </div>  
-        <hr/>
-        <button class="uk-button uk-align-center uk-margin-top uk-border-pill
-        uk-button-secondary" type="submit">Generate</button>
+            <hr/>
+            <button class="uk-button uk-align-center uk-margin-top uk-border-pill
+            uk-button-secondary" type="submit">Generate</button>
+        </form>
         <div class="uk-card uk-align-center uk-width-2-3 uk-box-shadow-large uk-border-rounded uk-card-default uk-card-body">
             <blockquote cite="#">
                 <p class="uk-margin-small-bottom">The blockquote element represents content that is quoted from another source, <br>
