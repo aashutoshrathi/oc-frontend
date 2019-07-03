@@ -10,3 +10,7 @@
 blockquote footer::before {
     content: "~ " !important;
 }
+
+.centeralize {
+    text-align: center;
+}
