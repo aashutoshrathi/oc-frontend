@@ -1,7 +1,8 @@
-const loveQuotes = [
-    [],
-    [],
-    []
+const humorQuotes = [
+    ["Great humor is one"],
+    ["of the best articles "],
+    ["of dress one can wear in society."],
+    ["William Thackeray"]
 ];
 
 const motivationalQuotes = [

@@ -1,7 +1,17 @@
 function handleFormSubmission() {
     cleanUp();
     const numberOfQuotes = document.getElementById('form-stacked-select').value;
-    generateRandomQuotes(numberOfQuotes);
+    const types = [];
+    const humorType = document.getElementById('humor-checkbox').checked;
+    if(humorType) {
+        types.push('humor');
+    }
+    const motivationType = document.getElementById('motivation-checkbox').checked;
+    if(motivationType) {
+        types.push('motivation');
+    }
+
+    generateRandomQuotes(numberOfQuotes, types);
 }
 
 function cleanUp() {
@@ -9,16 +19,39 @@ function cleanUp() {
     quotesDiv.innerHTML = '';
 }
 
-function generateRandomQuotes(quantity) {
-    motivationQuotesLength = motivationalQuotes.length;
-    randomNums = generateNUniqueNumbers(quantity, motivationQuotesLength);
+function appendLists(listOne, listTwo) {
+    listOne[0] = [...listOne[0], ...listTwo[0]];
+    listOne[1] = [...listOne[1], ...listTwo[1]];
+    listOne[2] = [...listOne[2], ...listTwo[2]];
+    listOne[3] = [...listOne[3], ...listTwo[3]];
+    return listOne;
+}
+
+function generateRandomQuotes(quantity, types) {
+    listToUse = [[], [], [], []];
+    if(types.includes('humor')) {
+        listToUse =  appendLists(listToUse, humorQuotes);
+    }
+
+    if(types.includes('motivation')) {
+        listToUse =  appendLists(listToUse, motivationalQuotes);        
+    }
+
+    listLength = listToUse.length;
+    console.log(listToUse);
+
+    if(listLength < quantity) {
+        quantity = listLength;
+    }
+
+    randomNums = generateNUniqueNumbers(quantity, listLength);
 
     quotes = randomNums.map(num => {
         return {
-            begin: motivationalQuotes[0][num],
-            mid: motivationalQuotes[1][num],
-            last: motivationalQuotes[2][num],
-            author: motivationalQuotes[3][num]
+            begin: listToUse[0][num-1],
+            mid: listToUse[1][num-1],
+            last: listToUse[2][num-1],
+            author: listToUse[3][num-1]
         }
     });
 
