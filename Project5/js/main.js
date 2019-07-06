@@ -1,5 +1,4 @@
 function handleFormSubmission() {
-    cleanUp();
     const numberOfQuotes = document.getElementById('form-stacked-select').value;
     const types = [];
     const humorType = document.getElementById('humor-checkbox').checked;
@@ -10,11 +9,19 @@ function handleFormSubmission() {
     if(motivationType) {
         types.push('motivation');
     }
+    if(!humorType && !motivationType) {
+        errorElement = document.getElementById('error');
+        errorElement.style = "display: flex; justify-content: center;"
+        return;
+    }
+    cleanUp();
 
     generateRandomQuotes(numberOfQuotes, types);
 }
 
 function cleanUp() {
+    errorElement = document.getElementById('error');
+    errorElement.style.display="none";
     const quotesDiv = document.getElementById('quotes');
     quotesDiv.innerHTML = '';
 }

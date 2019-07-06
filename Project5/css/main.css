@@ -11,6 +11,10 @@ blockquote footer::before {
     content: "~ " !important;
 }
 
+#error {
+    display: none;
+}
+
 .centeralize {
     text-align: center;
 }
