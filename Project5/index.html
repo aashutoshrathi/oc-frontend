@@ -9,7 +9,7 @@
         <!-- UIkit CSS -->
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css">
-        <link rel="icon" href="media/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="media/favicon.png" type="image/png" />
         <link rel="stylesheet" href="css/main.css" type="text/css">
     </head>
     <!-- https://instant.page/ -->
@@ -17,39 +17,38 @@
         integrity="sha384-EwBObn5QAxP8f09iemwAJljc+sU+eUXeL9vSBw1eNmVarwhKk2F9vBEpaN9rsrtp"></script>
 
     <body>
-        <h1 class='uk-text-center uk-text-emphasis'>Quote Generator</h1>
+        <h1 class='uk-text-center uk-padding-small uk-text-emphasis'>Quote Generator</h1>
         <br/>
-        <div class="centeralize">
-            <label>
-                <input class="uk-checkbox" type="checkbox" checked> 
+        <form class="centeralize">
+            <label class="uk-padding-small uk-padding-remove-vertical">
+                <input class="uk-checkbox uk-text-emphasis" id="motivation-checkbox" type="checkbox" checked> 
                 Motivational 🏋️ </label>
-            <label>
-                <input class="uk-checkbox" type="checkbox">
+            <label class="uk-padding-small uk-padding-remove-vertical uk-text-emphasis">
+                <input class="uk-checkbox" id="love-checkbox" type="checkbox">
                  Love 💕
             </label>
-            <div uk-form-custom="target: > * > span:first-child">
+            <div class="uk-padding-small uk-padding-remove-vertical" uk-form-custom="target: > * > span:first-child">
                 <select class="uk-select" id="form-stacked-select">
                     <option>1</option>
                     <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
                 </select>
                 <button class="uk-button uk-button-default" type="button" tabindex="-1">
                     <span></span>
                     <span uk-icon="icon: chevron-down"></span>
                 </button>
             </div>
-        </div>  
-        <hr/>
-        <button class="uk-button uk-align-center uk-margin-top uk-border-pill
-        uk-button-secondary" type="submit">Generate</button>
-        <div class="uk-card uk-align-center uk-width-1-2 uk-box-shadow-large uk-border-rounded uk-card-default uk-card-body">
-            <blockquote cite="#">
-                <p class="uk-margin-small-bottom">The blockquote element represents content that is quoted from another source, <br>
-                    optionally with a citation which must be within a footer or cite element.</p>
-                <footer>Someone famous in <cite><a href="#">Source Title</a></cite></footer>
-            </blockquote>
-        </div>
+            <hr/>
+            <button class="uk-button uk-align-center uk-margin-top uk-border-pill
+            uk-button-secondary" type="submit">Generate</button>
+        </form>
+
+        <div id="quotes"/>
     </body>
 
+    <script type="text/javascript" src="js/quoteStore.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <!-- UIkit JS -->
     <script src="js/uikit.min.js"></script>
