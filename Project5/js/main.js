@@ -2,7 +2,6 @@
 
 // }
 
-
 function generateRandomQuotes(quantity) {
     motivationQuotesLength = motivationalQuotes.length;
     randomNums = generateNUniqueNumbers(quantity, motivationQuotesLength);
