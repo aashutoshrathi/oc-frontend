@@ -1,7 +1,32 @@
-const loveQuotes = [
-    [],
-    [],
-    []
+const humorQuotes = [
+    [
+        "Great humor is one",
+        "Kindness and a generous spirit go a long way",
+        "If I had no sense of humor",
+        "There is a thin line that",
+        "You may not be able to change a situation,",
+    ],
+    [
+        "of the best articles ",
+        "And a sense of humor.",
+        "I would long ago",
+        "separates laughter and pain,",
+        "but with humor",        
+    ],
+    [
+        "of dress one can wear in society.",
+        "It's like medicine - very healing.",
+        "have committed suicide.",
+        "comedy and tragedy, humor and hurt.",
+        "you can change your attitude about it.",
+    ],
+    [
+        "William Thackeray",
+        "Max Irons",
+        "Mahatma Gandhi",
+        "Erma Bombeck",
+        "Allen Klein",
+    ]
 ];
 
 const motivationalQuotes = [

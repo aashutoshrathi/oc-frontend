@@ -1,17 +1,64 @@
-// handleFormSubmission() {
+function handleFormSubmission() {
+    const numberOfQuotes = document.getElementById('form-stacked-select').value;
+    const types = [];
+    const humorType = document.getElementById('humor-checkbox').checked;
+    if(humorType) {
+        types.push('humor');
+    }
+    const motivationType = document.getElementById('motivation-checkbox').checked;
+    if(motivationType) {
+        types.push('motivation');
+    }
+    if(!humorType && !motivationType) {
+        errorElement = document.getElementById('error');
+        errorElement.style = "display: flex; justify-content: center;"
+        return;
+    }
+    cleanUp();
 
-// }
+    generateRandomQuotes(numberOfQuotes, types);
+}
 
-function generateRandomQuotes(quantity) {
-    motivationQuotesLength = motivationalQuotes.length;
-    randomNums = generateNUniqueNumbers(quantity, motivationQuotesLength);
+function cleanUp() {
+    errorElement = document.getElementById('error');
+    errorElement.style.display="none";
+    const quotesDiv = document.getElementById('quotes');
+    quotesDiv.innerHTML = '';
+}
+
+function appendLists(listOne, listTwo) {
+    listOne[0] = [...listOne[0], ...listTwo[0]];
+    listOne[1] = [...listOne[1], ...listTwo[1]];
+    listOne[2] = [...listOne[2], ...listTwo[2]];
+    listOne[3] = [...listOne[3], ...listTwo[3]];
+    return listOne;
+}
+
+function generateRandomQuotes(quantity, types) {
+    listToUse = [[], [], [], []];
+    if(types.includes('humor')) {
+        listToUse =  appendLists(listToUse, humorQuotes);
+    }
+
+    if(types.includes('motivation')) {
+        listToUse =  appendLists(listToUse, motivationalQuotes);        
+    }
+
+    listLength = listToUse.length;
+    console.log(listToUse);
+
+    if(listLength < quantity) {
+        quantity = listLength;
+    }
+
+    randomNums = generateNUniqueNumbers(quantity, listLength);
 
     quotes = randomNums.map(num => {
         return {
-            begin: motivationalQuotes[0][num],
-            mid: motivationalQuotes[1][num],
-            last: motivationalQuotes[2][num],
-            author: motivationalQuotes[3][num]
+            begin: listToUse[0][num-1],
+            mid: listToUse[1][num-1],
+            last: listToUse[2][num-1],
+            author: listToUse[3][num-1]
         }
     });
 
@@ -21,7 +68,8 @@ function generateRandomQuotes(quantity) {
 function renderToDOM(quotes) {
     quotesDiv = document.getElementById('quotes');
     quotes.forEach(quote => {
-        const fullQuote = `${quote.begin}${quote.mid}${quote.last}\n~${quote.author}`.trim();
+        const fullQuote = `${quote.begin}${quote.mid}${quote.last} ~${quote.author}`.trim();
+        const twitterLink = `http://twitter.com/share?text=${fullQuote}&url=${document.location}`;
         quoteDiv = `<div class="uk-card uk-text-center uk-align-center uk-width-1-2@m uk-width-1-1@s uk-box-shadow-large uk-border-rounded uk-card-default uk-card-body">
                         <blockquote cite="#">
                             <p class="uk-margin-small-bottom uk-overflow-auto">
@@ -36,9 +84,10 @@ function renderToDOM(quotes) {
                             </footer>
                         </blockquote>
                         <div>
-                            <a class="uk-icon-link" target="_blank" uk-icon="twitter" href="http://twitter.com/share?text=${fullQuote}&url=${document.location}"/>
-                            <a class="uk-icon-link uk-margin-left" target="_blank" uk-icon="whatsapp" href="whatsapp://send?text=${fullQuote}&url=${document.location}"/>
-                        <div>
+                            <a class="uk-icon-link" target="popup" 
+                                onclick="window.open('${twitterLink}','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;" uk-icon="twitter" ></a>
+                            <a class="uk-icon-link uk-margin-left" target="_blank" uk-icon="whatsapp" href="whatsapp://send?text=${fullQuote}&url=${document.location}"></a>
+                        </div>
                     </div>`;
         quotesDiv.insertAdjacentHTML("afterbegin", quoteDiv);
     })
@@ -52,5 +101,3 @@ function generateNUniqueNumbers(length, range) {
     }
     return arr;
 }
-
-generateRandomQuotes(1);

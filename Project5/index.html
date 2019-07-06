@@ -18,13 +18,14 @@
     <body>
         <h1 class='uk-text-center uk-padding-small uk-text-emphasis'>Quote Generator</h1>
         <br/>
-        <form class="centeralize">
+        <div class="centeralize">
             <label class="uk-padding-small uk-padding-remove-vertical">
                 <input class="uk-checkbox uk-text-emphasis" id="motivation-checkbox" type="checkbox" checked> 
-                Motivational 🏋️ </label>
+                Motivational 
+            </label>
             <label class="uk-padding-small uk-padding-remove-vertical uk-text-emphasis">
-                <input class="uk-checkbox" id="love-checkbox" type="checkbox">
-                 Love 💕
+                <input class="uk-checkbox uk-text-emphasis" id="humor-checkbox" type="checkbox">
+                 Humor
             </label>
             <div class="uk-padding-small uk-padding-remove-vertical" uk-form-custom="target: > * > span:first-child">
                 <select class="uk-select" id="form-stacked-select">
@@ -40,11 +41,21 @@
                 </button>
             </div>
             <hr/>
-            <button class="uk-button uk-align-center uk-margin-top uk-border-pill
-            uk-button-secondary" type="submit">Generate</button>
-        </form>
 
-        <div id="quotes"/>
+            <div id="error" class="uk-alert-danger uk-text-center" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p class="uk-text-center">Look son, you have to choose something in life, you can't click aimlessly.</p>
+            </div>
+
+            <button class="uk-button uk-align-center uk-margin-top uk-border-pill
+            uk-button-secondary" onclick="handleFormSubmission()">Generate</button>
+        </div>
+
+
+        <!-- This is where all the quotes come to -->
+        <div id="quotes">
+        </div>
+
     </body>
 
     <script type="text/javascript" src="js/quoteStore.js"></script>
