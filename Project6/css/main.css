@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Manrope;
+    src: url("../fonts/manrope-regular.otf") format("opentype");
+}
+
+* {
+    font-family: 'Manrope', sans-serif !important;
+}
+
+#board { 
+    margin: 50px;
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+}
+
+.box {
+    border: 2px solid;
+    height: 60px;
+    width: 60px;
+}
