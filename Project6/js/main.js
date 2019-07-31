@@ -32,6 +32,14 @@ const weaponMap = [
     }
 ];
 
+function setPlayerPositions(one, two) {
+    targetBox = document.querySelector(`#box-${one}`);
+    targetBox.innerHTML += `<p class='uk-text-large uk-margin-auto uk-text-bold'>P1</p>`;
+
+    targetBox = document.querySelector(`#box-${two}`);
+    targetBox.innerHTML += `<p class='uk-text-large uk-margin-auto uk-text-bold'>P2</p>`;
+}
+
 function generateNUniqueNumbers(length, range) {
     var arr = []
     while(arr.length < length){
@@ -60,7 +68,7 @@ function initEmptyBoard() {
 function addHurdles(hurdles) {
     hurdles.forEach(hurdle => {
         targetBox = document.querySelector(`#box-${hurdle}`);
-        targetBox.innerHTML = hurdleBlock;
+        targetBox.innerHTML += hurdleBlock;
     });
 }
 
@@ -69,7 +77,7 @@ function addWeapons(weapons) {
         targetBox = document.querySelector(`#box-${weapon}`);
         const randomWeaponIndex = Math.floor(Math.random()*(weaponMap.length));
         const { image, name, score } = weaponMap[randomWeaponIndex];
-        targetBox.innerHTML = `<img src="${image}" alt="${name}" title="${score}"/>`;
+        targetBox.innerHTML += `<img src="${image}" alt="${name}" title="${score}"/>`;
     });
 }
 
@@ -81,6 +89,8 @@ function renderBoard() {
 
     playerOnePosition = randomNumbers.slice(20, 21);
     playerTwoPosition = randomNumbers.slice(21, 22);
+
+    setPlayerPositions(playerOnePosition, playerTwoPosition);
 
     addHurdles(hurdles);
     addWeapons(weapons);
