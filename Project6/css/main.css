@@ -7,17 +7,17 @@
     font-family: 'Manrope', sans-serif !important;
 }
 
-#board { 
-    margin: 50px;
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
-    grid-column-gap: 0px;
-    grid-row-gap: 0px; 
+.row { 
+    margin: 0 auto;
+	display: inline-block;
 }
 
 .box {
-    border: 2px solid;
+	width: 60px;
     height: 60px;
-    width: 60px;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.5s;
+    display: inline-block;
+    border: black solid;
 }
