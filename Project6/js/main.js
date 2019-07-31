@@ -44,6 +44,9 @@ function generateNUniqueNumbers(length, range) {
 function initEmptyBoard() {
     board = document.querySelector('#board');
     boardSize  = 10;
+
+    document.querySelector('#p1-score').innerText = 100;
+    document.querySelector('#p2-score').innerText = 100;
     
     for(let i=0; i<10; i++) {
         board.innerHTML += `<div class="row" id="row-${i+1}"></div>`
