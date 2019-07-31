@@ -1,30 +1,32 @@
 const imageDir = `https://aashutoshrathi.tk/oc-frontend/Project6/images/`;
+const weaponImages = `https://www.greeksymbols.net/img/`;
 
 const hurdleBlock = `<img src="${imageDir}tree.png"></img>`;
 
+
 const weaponMap = [
     {
-        image: `${imageDir}alpha.png`,
+        image: `${weaponImages}alpha-symbol.png`,
         score: 10,
         name: 'alpha'
     },
     {
-        image: `${imageDir}beta.png`,
+        image: `${weaponImages}beta-symbol.png`,
         score: 20,
         name: 'beta'
     },
     {
-        image: `${imageDir}gamma.png`,
+        image: `${weaponImages}gamma-symbol.png`,
         score: 30,
         name: 'gamma'
     },
     {
-        image: `${imageDir}delta.png`,
+        image: `${weaponImages}delta-symbol.png`,
         score: 40,
         name: 'delta'
     },
     {
-        image: `${imageDir}pi.png`,
+        image: `${weaponImages}pi-symbol.png`,
         score: 50,
         name: 'pi'
     }
@@ -62,9 +64,9 @@ function addHurdles(hurdles) {
 function addWeapons(weapons) {
     weapons.forEach(weapon => {
         targetBox = document.querySelector(`#box-${weapon}`);
-        const randomWeaponIndex = Math.floor(Math.random()*(weaponMap.length)) + 1;
+        const randomWeaponIndex = Math.floor(Math.random()*(weaponMap.length));
         const { image, name, score } = weaponMap[randomWeaponIndex];
-        targetBox.innerHTML = `<img src="${image}" alt="${name}">${score}</img>`;
+        targetBox.innerHTML = `<img src="${image}" alt="${name}" title="${score}"/>`;
     });
 }
 
