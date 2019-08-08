@@ -34,10 +34,10 @@ const weaponMap = [
 
 function setPlayerPositions(one, two) {
     targetBox = document.querySelector(`#box-${one}`);
-    targetBox.innerHTML += `<p class='uk-text-large uk-margin-auto uk-text-bold'>P1</p>`;
+    targetBox.innerHTML += `<img src="${imageDir}p1.png" alt="P1"/>`;
 
     targetBox = document.querySelector(`#box-${two}`);
-    targetBox.innerHTML += `<p class='uk-text-large uk-margin-auto uk-text-bold'>P2</p>`;
+    targetBox.innerHTML += `<img src="${imageDir}p2.png" alt="P2"/>`;
 }
 
 function generateNUniqueNumbers(length, range) {
