@@ -55,10 +55,10 @@ function generateRandomQuotes(quantity, types) {
 
     quotes = randomNums.map(num => {
         return {
-            begin: listToUse[0][num-1],
-            mid: listToUse[1][num-1],
-            last: listToUse[2][num-1],
-            author: listToUse[3][num-1]
+            begin: listToUse[0][num-1], // begin
+            mid: listToUse[1][num-1], // mid
+            last: listToUse[2][num-1], // last
+            author: listToUse[3][num-1] // author
         }
     });
 
@@ -95,7 +95,7 @@ function renderToDOM(quotes) {
 
 function generateNUniqueNumbers(length, range) {
     var arr = []
-    while(arr.length < length){
+    while(arr.length < length) {
         var r = Math.floor(Math.random()*range) + 1;
         if(arr.indexOf(r) === -1) arr.push(r);
     }
