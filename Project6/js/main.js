@@ -73,22 +73,21 @@ function addHurdles(hurdles) {
 }
 
 function addWeapons(weapons) {
-    weapons.forEach(weapon => {
+    weapons.forEach((weapon, idx) => {
         targetBox = document.querySelector(`#box-${weapon}`);
-        const randomWeaponIndex = Math.floor(Math.random()*(weaponMap.length));
-        const { image, name, score } = weaponMap[randomWeaponIndex];
+        const { image, name, score } = weaponMap[idx];
         targetBox.innerHTML += `<img src="${image}" alt="${name}" title="${score}"/>`;
     });
 }
 
 function renderBoard() {
     initEmptyBoard();
-    randomNumbers = generateNUniqueNumbers(22, 100);
+    randomNumbers = generateNUniqueNumbers(17, 100);
     hurdles = randomNumbers.slice(0, 10);
-    weapons = randomNumbers.slice(10, 20);
+    weapons = randomNumbers.slice(10, 15);
 
-    playerOnePosition = randomNumbers.slice(20, 21);
-    playerTwoPosition = randomNumbers.slice(21, 22);
+    playerOnePosition = randomNumbers[15];
+    playerTwoPosition = randomNumbers[16];
 
     setPlayerPositions(playerOnePosition, playerTwoPosition);
 
