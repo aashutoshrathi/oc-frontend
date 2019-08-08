@@ -1,4 +1,4 @@
-### Subprojects
+# Subprojects
 
 - Plan the game flow
 - 10x10
@@ -12,3 +12,12 @@
 - Metadata
 - Architecture
 - MVC Design Pattern in JS
+
+## 35% - 31st July - the board is created and players, dimmed boxes and weapons displayed correctly
+
+- decrease the number of weapons (one of a kind is enough)
+- create objects
+- movements
+- player characters
+- available cells highlight
+- combat mode modal window

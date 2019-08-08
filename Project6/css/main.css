@@ -1,27 +1,27 @@
 @font-face {
-    font-family: Manrope;
-    src: url("../fonts/manrope-regular.otf") format("opentype");
+  font-family: Manrope;
+  src: url("../fonts/manrope-regular.otf") format("opentype");
 }
 
 * {
-    font-family: 'Manrope', sans-serif !important;
+  font-family: "Manrope", sans-serif !important;
 }
 
-.row { 
-    margin: 0 auto;
-	display: flex;
+.row {
+  margin: 0 auto;
+  display: flex;
 }
 
 #board {
-    width: fit-content;
-    align-content: center;
-    justify-content: center;
-    text-align: center;
+  width: fit-content;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .box {
-	width: 50px;
-    height: 50px;
-    display: flex;
-    border: black solid 0.1px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  border: black solid 0.1px;
 }
