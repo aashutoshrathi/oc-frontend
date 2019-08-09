@@ -15,9 +15,11 @@
 
 ## 35% - 31st July - the board is created and players, dimmed boxes and weapons displayed correctly
 
-- decrease the number of weapons (one of a kind is enough)
+<!-- - decrease the number of weapons (one of a kind is enough) - Done -->
 - create objects
 - movements
-- player characters
-- available cells highlight
+<!-- - player characters - Done -->
+- available cells highlight (logic improvement)
 - combat mode modal window
+- Player name modal
+- renderBoard function
