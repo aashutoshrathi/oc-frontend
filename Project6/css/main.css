@@ -28,4 +28,5 @@
 
 .possible {
   background-color: #ffff75;
+  border: black dashed 0.1px;
 }

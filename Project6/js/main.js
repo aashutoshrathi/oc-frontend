@@ -175,17 +175,26 @@ Game.prototype.renderBoard = function() {
 
 Game.prototype.getValidMoves = function() {
   point = this.players[this.activePlayer].position;
-  parentRow = point/10 +1;
+  parentRow = point / 10 + 1;
+  parentCol = point % 10;
   directions = [1, -1, 10, -10]; // First one is for left, then right then top bottom.
   // Every cell (i,j) in grid has number 10*i+j+1
   directions.forEach(dir => {
     for (let i = 1; i <= this.moveLimit; i++) {
-      const target = point + dir * i; // these are the cells I'm checking, but in case of horizontal one, sometimes it goes wrong.
-      if (this.grid[target] === "H") { // H is for Hurdles
+      const target = point + dir * i;
+      if (this.grid[target] === "H") {
+        // H is for Hurdles
         break;
       }
-      const targetRow = target/10 + 1;
-      if (target >= 1 && target <= 100 && parentRow === targetRow) {
+
+      tCol = target % 10;
+      tRow = target / 10 + 1;
+      console.table({ target, tCol, parentCol, tRow, parentRow });
+
+      const verticalCon = tCol === parentCol && Math.abs(dir) == 10;
+      const horizontalCon = tRow === parentRow && Math.abs(dir) == 1;
+      const rangeCondition = target >= 1 && target <= 100;
+      if (rangeCondition && (verticalCon || horizontalCon)) {
         document.querySelector(`#box-${target}`).className += " possible"; // possible class gives yellow bg to cell
         document
           .querySelector(`#box-${target}`)
