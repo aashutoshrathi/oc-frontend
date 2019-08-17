@@ -72,13 +72,19 @@ Game.prototype.setPlayerPositions = function(one, two) {
   const newPos = [one, two];
   newPos.forEach((pos, i) => {
     targetBox = document.querySelector(`#box-${pos}`);
+    newInnerHTML = "";
     if (targetBox.children[0] && targetBox.children[0].className === "weapon") {
       this.settings.weaponTypes.forEach((weapon, idx) => {
         if (weapon.name === targetBox.children[0].alt) {
+          const player = this.players[(this.activePlayer + 1) % 2];
+          // if (player.weapon !== -1) {
+          //   const { image, name, score } = this.settings.weaponTypes[player.weapon];
+          //   newInnerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
+          // }
           this.players[(this.activePlayer + 1) % 2].weapon = idx;
         }
       });
-      targetBox.innerHTML = "";
+      targetBox.innerHTML = newInnerHTML;
     }
 
     if (targetBox.children.length < 1)
@@ -140,6 +146,20 @@ Game.prototype.onClickThing = function() {
 
   that.updateBoard();
 
+  that.updateScoreBoards();
+};
+
+Game.prototype.addWeapons = function(weapons) {
+  var that = this;
+  weapons.forEach((weapon, idx) => {
+    targetBox = document.querySelector(`#box-${weapon}`);
+    that.grid[weapon] = "W";
+    const { image, name, score } = that.settings.weaponTypes[idx];
+    targetBox.innerHTML += `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
+  });
+};
+
+Game.prototype.updateScoreBoards = function() {
   for (let id = 1; id <= 2; id++) {
     document.querySelector(`#p${id}-name`).innerText = this.players[
       id - 1
@@ -155,18 +175,8 @@ Game.prototype.onClickThing = function() {
             this.settings.weaponTypes[wpnIdx].image
           } alt="${this.settings.weaponTypes[wpnIdx].name}" title="${
             this.settings.weaponTypes[wpnIdx].score
-          }"">`;
+          }""> (${this.settings.weaponTypes[wpnIdx].score})`;
   }
-};
-
-Game.prototype.addWeapons = function(weapons) {
-  var that = this;
-  weapons.forEach((weapon, idx) => {
-    targetBox = document.querySelector(`#box-${weapon}`);
-    that.grid[weapon] = "W";
-    const { image, name, score } = that.settings.weaponTypes[idx];
-    targetBox.innerHTML += `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
-  });
 };
 
 Game.prototype.renderBoard = function() {
@@ -180,23 +190,7 @@ Game.prototype.renderBoard = function() {
   this.players[0].position = playerOnePosition;
   this.players[1].position = playerTwoPosition;
 
-  for (let id = 1; id <= 2; id++) {
-    document.querySelector(`#p${id}-name`).innerText = this.players[
-      id - 1
-    ].name;
-    document.querySelector(`#p${id}-score`).innerText = this.players[
-      id - 1
-    ].score;
-    const wpnIdx = this.players[id - 1].weapon;
-    document.querySelector(`#p${id}-weapon`).innerHTML =
-      wpnIdx === -1
-        ? "None"
-        : `<img class="weapon-in-card" src=${
-            this.settings.weaponTypes[wpnIdx].image
-          } alt="${this.settings.weaponTypes[wpnIdx].name}" title="${
-            this.settings.weaponTypes[wpnIdx].score
-          }"">`;
-  }
+  this.updateScoreBoards();
 
   this.setPlayerPositions(playerOnePosition, playerTwoPosition);
 
