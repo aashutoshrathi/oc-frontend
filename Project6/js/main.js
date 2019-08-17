@@ -120,7 +120,7 @@ function initEmptyBoard() {
     board.innerHTML += `<div class="row" id="row-${i + 1}"></div>`;
     row = document.querySelector(`#row-${i + 1}`);
     for (let j = 0; j < 10; j++) {
-      row.innerHTML += `<div class="box" id="box-${i * 10 + j + 1}"></div>`;
+      row.innerHTML += `<div class="box" id="box-${i * 10 + j}"></div>`;
     }
   }
 }
@@ -135,6 +135,25 @@ Game.prototype.addHurdles = function(hurdles) {
   });
 };
 
+function resetBox(boxNum) {
+  box = document.querySelector(`#box-${boxNum}`);
+  box.innerHTML = "";
+}
+
+Game.prototype.onClickThing = function() {
+  const that = this;
+  const dirtyFellows = document.getElementsByClassName("possible");
+  Object.values(dirtyFellows).forEach(fellow => {
+    fellow.className = "box";
+    fellow.removeEventListener("click", function() {
+      that.onClickThing();
+    });
+  });
+
+  that.activePlayer = (that.activePlayer + 1) % 2; // And after click the turn changes.
+  that.updateBoard();
+};
+
 Game.prototype.addWeapons = function(weapons) {
   var that = this;
   weapons.forEach((weapon, idx) => {
@@ -147,7 +166,7 @@ Game.prototype.addWeapons = function(weapons) {
 
 Game.prototype.renderBoard = function() {
   initEmptyBoard();
-  randomNumbers = generateNUniqueNumbers(17, 100);
+  randomNumbers = generateNUniqueNumbers(17, 99);
   hurdles = randomNumbers.slice(0, 10);
   weapons = randomNumbers.slice(10, 15);
 
@@ -173,35 +192,42 @@ Game.prototype.renderBoard = function() {
   this.getValidMoves();
 };
 
+Game.prototype.updateBoard = function() {
+  setPlayerPositions(this.players[0].position, this.players[1].position);
+  this.getValidMoves();
+};
+
 Game.prototype.getValidMoves = function() {
-  point = this.players[this.activePlayer].position;
-  parentRow = point / 10 + 1;
+  var that = this;
+  point = that.players[that.activePlayer].position;
+  parentRow = parseInt(point / 10);
   parentCol = point % 10;
   directions = [1, -1, 10, -10]; // First one is for left, then right then top bottom.
   // Every cell (i,j) in grid has number 10*i+j+1
   directions.forEach(dir => {
-    for (let i = 1; i <= this.moveLimit; i++) {
+    for (let i = 1; i <= that.moveLimit; i++) {
       const target = point + dir * i;
-      if (this.grid[target] === "H") {
+      if (that.grid[target] === "H") {
         // H is for Hurdles
         break;
       }
 
       tCol = target % 10;
-      tRow = target / 10 + 1;
-      console.table({ target, tCol, parentCol, tRow, parentRow });
+      tRow = parseInt(target / 10);
+      // console.table({ point, target, tCol, parentCol, tRow, parentRow });
 
       const verticalCon = tCol === parentCol && Math.abs(dir) == 10;
       const horizontalCon = tRow === parentRow && Math.abs(dir) == 1;
-      const rangeCondition = target >= 1 && target <= 100;
+      const rangeCondition = target >= 0 && target < 100;
       if (rangeCondition && (verticalCon || horizontalCon)) {
         document.querySelector(`#box-${target}`).className += " possible"; // possible class gives yellow bg to cell
         document
           .querySelector(`#box-${target}`)
           .addEventListener("click", function() {
-            console.log(`Clicked on ${target}`);
+            resetBox(that.players[that.activePlayer].position);
+            that.players[that.activePlayer].position = target;
+            that.onClickThing();
           }); // this is onclick event which will move player soon.
-        this.activePlayer = 1; // And after click the turn changes.
       }
     }
   });
