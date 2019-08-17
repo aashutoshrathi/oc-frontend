@@ -36,3 +36,7 @@
   width: 42px;
   filter: invert(1);
 }
+
+.hidden {
+  display: none;
+}

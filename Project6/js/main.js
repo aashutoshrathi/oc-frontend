@@ -159,6 +159,21 @@ Game.prototype.addWeapons = function(weapons) {
   });
 };
 
+Game.prototype.setNames = function() {
+  const pOneName = document.getElementById("p1-name-val").value;
+  const pTwoName = document.getElementById("p2-name-val").value;
+  const names = [pOneName, pTwoName];
+  // console.log(names);
+  this.players.forEach((player, idx) => {
+    player.name = names[idx];
+  });
+  document.getElementById("name-form").style.display = "none";
+  this.updateScoreBoards();
+
+  toShow = document.getElementsByClassName("hidden");
+  Object.values(toShow).forEach(ele => (ele.style.display = "block"));
+};
+
 Game.prototype.updateScoreBoards = function() {
   for (let id = 1; id <= 2; id++) {
     document.querySelector(`#p${id}-name`).innerText = this.players[
@@ -241,3 +256,7 @@ Game.prototype.getValidMoves = function() {
 };
 
 game = new Game(gameSettings);
+const submit = document.querySelector("#submit");
+submit.addEventListener("click", function() {
+  game.setNames();
+});
