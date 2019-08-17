@@ -96,11 +96,14 @@ function Player(player) {
 }
 
 function setPlayerPositions(one, two) {
+  console.log(`Setting players at ${one} and ${two}`);
   targetBox = document.querySelector(`#box-${one}`);
-  targetBox.innerHTML += `<img width="45px" src="${imageDir}p1.png" alt="P1"/>`;
+  if (targetBox.children.length < 1)
+    targetBox.innerHTML += `<img width="45px" src="${imageDir}p1.png" alt="P1"/>`;
 
   targetBox = document.querySelector(`#box-${two}`);
-  targetBox.innerHTML += `<img width="45px" src="${imageDir}p2.png" alt="P2"/>`;
+  if (targetBox.children.length < 1)
+    targetBox.innerHTML += `<img width="45px" src="${imageDir}p2.png" alt="P2"/>`;
 }
 
 function generateNUniqueNumbers(length, range) {
