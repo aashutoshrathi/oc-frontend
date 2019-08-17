@@ -29,4 +29,9 @@
 .possible {
   background-color: #ffff75;
   border: black dashed 0.1px;
+  z-index: 9;
+}
+
+.weapon {
+  z-index: -10;
 }

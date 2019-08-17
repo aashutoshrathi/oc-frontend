@@ -45,40 +45,12 @@ const gameSettings = {
   ]
 };
 
-const weaponMap = [
-  {
-    image: `${weaponImages}alpha-symbol.png`,
-    score: 10,
-    name: "alpha"
-  },
-  {
-    image: `${weaponImages}beta-symbol.png`,
-    score: 20,
-    name: "beta"
-  },
-  {
-    image: `${weaponImages}gamma-symbol.png`,
-    score: 30,
-    name: "gamma"
-  },
-  {
-    image: `${weaponImages}delta-symbol.png`,
-    score: 40,
-    name: "delta"
-  },
-  {
-    image: `${weaponImages}pi-symbol.png`,
-    score: 50,
-    name: "pi"
-  }
-];
-
 function Game(gameSettings) {
   this.settings = gameSettings;
   this.activePlayer = 0;
   this.moveLimit = gameSettings.moveLimit;
   this.players = gameSettings.players.map((player, idx) => {
-    player["id"] = `player${idx + 1}`;
+    player["id"] = idx;
     return new Player(player, this);
   }, this);
   this.grid = new Array(100).fill(0);
@@ -95,16 +67,25 @@ function Player(player) {
   this.position;
 }
 
-function setPlayerPositions(one, two) {
-  console.log(`Setting players at ${one} and ${two}`);
-  targetBox = document.querySelector(`#box-${one}`);
-  if (targetBox.children.length < 1)
-    targetBox.innerHTML += `<img width="45px" src="${imageDir}p1.png" alt="P1"/>`;
+Game.prototype.setPlayerPositions = function(one, two) {
+  // console.log(`Setting players at ${one} and ${two}`);
+  const newPos = [one, two];
+  newPos.forEach((pos, i) => {
+    targetBox = document.querySelector(`#box-${pos}`);
+    if (targetBox.children[0] && targetBox.children[0].className === "weapon") {
+      this.settings.weaponTypes.forEach((weapon, idx) => {
+        if (weapon.name === targetBox.children[0].alt) {
+          this.players[this.activePlayer].weapon = idx;
+        }
+      });
+      targetBox.innerHTML = "";
+    }
 
-  targetBox = document.querySelector(`#box-${two}`);
-  if (targetBox.children.length < 1)
-    targetBox.innerHTML += `<img width="45px" src="${imageDir}p2.png" alt="P2"/>`;
-}
+    if (targetBox.children.length < 1)
+      targetBox.innerHTML += `<img width="45px" src="${imageDir}p${i +
+        1}.png" alt="P${i + 1}"/>`;
+  });
+};
 
 function generateNUniqueNumbers(length, range) {
   var arr = [];
@@ -117,13 +98,12 @@ function generateNUniqueNumbers(length, range) {
 
 function initEmptyBoard() {
   board = document.querySelector("#board");
-  boardSize = BOARD_SIZE;
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < BOARD_SIZE; i++) {
     board.innerHTML += `<div class="row" id="row-${i + 1}"></div>`;
     row = document.querySelector(`#row-${i + 1}`);
-    for (let j = 0; j < 10; j++) {
-      row.innerHTML += `<div class="box" id="box-${i * 10 + j}"></div>`;
+    for (let j = 0; j < BOARD_SIZE; j++) {
+      row.innerHTML += `<div class="box" id="box-${i * BOARD_SIZE + j}"></div>`;
     }
   }
 }
@@ -141,6 +121,7 @@ Game.prototype.addHurdles = function(hurdles) {
 function resetBox(boxNum) {
   box = document.querySelector(`#box-${boxNum}`);
   box.innerHTML = "";
+  box.outerHTML = box.outerHTML;
 }
 
 Game.prototype.onClickThing = function() {
@@ -148,13 +129,25 @@ Game.prototype.onClickThing = function() {
   const dirtyFellows = document.getElementsByClassName("possible");
   Object.values(dirtyFellows).forEach(fellow => {
     fellow.className = "box";
-    fellow.removeEventListener("click", function() {
-      that.onClickThing();
-    });
+    fellow.outerHTML = fellow.outerHTML;
   });
 
   that.activePlayer = (that.activePlayer + 1) % 2; // And after click the turn changes.
+  const turnIndicator = document.querySelector("#turn");
+  turnIndicator.src = `${imageDir}p${that.activePlayer + 1}.png`;
+
   that.updateBoard();
+  
+  for (let id = 1; id <= 2; id++) {
+    document.querySelector(`#p${id}-score`).innerText = this.players[
+      id - 1
+    ].score;
+    document.querySelector(`#p${id}-weapon`).innerText =
+      this.players[id - 1].weapon === -1
+        ? "None"
+        : this.settings.weaponTypes[this.players[id - 1].weapon].name;
+  }
+
 };
 
 Game.prototype.addWeapons = function(weapons) {
@@ -162,8 +155,8 @@ Game.prototype.addWeapons = function(weapons) {
   weapons.forEach((weapon, idx) => {
     targetBox = document.querySelector(`#box-${weapon}`);
     that.grid[weapon] = "W";
-    const { image, name, score } = weaponMap[idx];
-    targetBox.innerHTML += `<img src="${image}" alt="${name}" title="${score}"/>`;
+    const { image, name, score } = that.settings.weaponTypes[idx];
+    targetBox.innerHTML += `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
   });
 };
 
@@ -185,10 +178,10 @@ Game.prototype.renderBoard = function() {
     document.querySelector(`#p${id}-weapon`).innerText =
       this.players[id - 1].weapon === -1
         ? "None"
-        : weaponMap[this.players[id - 1].weapon].name;
+        : this.settings.weaponTypes[this.players[id - 1].weapon].name;
   }
 
-  setPlayerPositions(playerOnePosition, playerTwoPosition);
+  this.setPlayerPositions(playerOnePosition, playerTwoPosition);
 
   this.addHurdles(hurdles, this);
   this.addWeapons(weapons, this);
@@ -196,7 +189,7 @@ Game.prototype.renderBoard = function() {
 };
 
 Game.prototype.updateBoard = function() {
-  setPlayerPositions(this.players[0].position, this.players[1].position);
+  this.setPlayerPositions(this.players[0].position, this.players[1].position);
   this.getValidMoves();
 };
 
@@ -235,11 +228,5 @@ Game.prototype.getValidMoves = function() {
     }
   });
 };
-
-// class Weapon(i) {
-//     type = i
-//     power = weaponMap[i].power
-//     image = weaponMap[i].image
-// }
 
 game = new Game(gameSettings);
