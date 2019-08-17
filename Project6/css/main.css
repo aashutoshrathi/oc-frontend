@@ -32,6 +32,7 @@
   z-index: 9;
 }
 
-.weapon {
-  z-index: -10;
+.weapon-in-card {
+  width: 42px;
+  filter: invert(1);
 }

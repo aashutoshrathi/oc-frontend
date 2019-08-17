@@ -63,7 +63,7 @@ function Player(player) {
   this.id = player.id;
   this.score = 100;
   this.weapon = -1;
-  this.name = player.name | `Player ${this.id}`;
+  this.name = player.name || `Player ${this.id}`;
   this.position;
 }
 
@@ -75,7 +75,7 @@ Game.prototype.setPlayerPositions = function(one, two) {
     if (targetBox.children[0] && targetBox.children[0].className === "weapon") {
       this.settings.weaponTypes.forEach((weapon, idx) => {
         if (weapon.name === targetBox.children[0].alt) {
-          this.players[this.activePlayer].weapon = idx;
+          this.players[(this.activePlayer + 1) % 2].weapon = idx;
         }
       });
       targetBox.innerHTML = "";
@@ -83,7 +83,9 @@ Game.prototype.setPlayerPositions = function(one, two) {
 
     if (targetBox.children.length < 1)
       targetBox.innerHTML += `<img width="45px" src="${imageDir}p${i +
-        1}.png" alt="P${i + 1}"/>`;
+        1}.png" alt="P${i + 1}" title="${
+        this.players[(this.activePlayer + 1) % 2].name
+      }"/>`;
   });
 };
 
@@ -137,17 +139,24 @@ Game.prototype.onClickThing = function() {
   turnIndicator.src = `${imageDir}p${that.activePlayer + 1}.png`;
 
   that.updateBoard();
-  
+
   for (let id = 1; id <= 2; id++) {
+    document.querySelector(`#p${id}-name`).innerText = this.players[
+      id - 1
+    ].name;
     document.querySelector(`#p${id}-score`).innerText = this.players[
       id - 1
     ].score;
-    document.querySelector(`#p${id}-weapon`).innerText =
-      this.players[id - 1].weapon === -1
+    const wpnIdx = this.players[id - 1].weapon;
+    document.querySelector(`#p${id}-weapon`).innerHTML =
+      wpnIdx === -1
         ? "None"
-        : this.settings.weaponTypes[this.players[id - 1].weapon].name;
+        : `<img class="weapon-in-card" src=${
+            this.settings.weaponTypes[wpnIdx].image
+          } alt="${this.settings.weaponTypes[wpnIdx].name}" title="${
+            this.settings.weaponTypes[wpnIdx].score
+          }"">`;
   }
-
 };
 
 Game.prototype.addWeapons = function(weapons) {
@@ -172,13 +181,21 @@ Game.prototype.renderBoard = function() {
   this.players[1].position = playerTwoPosition;
 
   for (let id = 1; id <= 2; id++) {
+    document.querySelector(`#p${id}-name`).innerText = this.players[
+      id - 1
+    ].name;
     document.querySelector(`#p${id}-score`).innerText = this.players[
       id - 1
     ].score;
-    document.querySelector(`#p${id}-weapon`).innerText =
-      this.players[id - 1].weapon === -1
+    const wpnIdx = this.players[id - 1].weapon;
+    document.querySelector(`#p${id}-weapon`).innerHTML =
+      wpnIdx === -1
         ? "None"
-        : this.settings.weaponTypes[this.players[id - 1].weapon].name;
+        : `<img class="weapon-in-card" src=${
+            this.settings.weaponTypes[wpnIdx].image
+          } alt="${this.settings.weaponTypes[wpnIdx].name}" title="${
+            this.settings.weaponTypes[wpnIdx].score
+          }"">`;
   }
 
   this.setPlayerPositions(playerOnePosition, playerTwoPosition);
