@@ -4,35 +4,6 @@ const weaponImages = `https://www.greeksymbols.net/img/`;
 const hurdleBlock = `<img src="${imageDir}pipe.png?q=1"></img>`;
 const BOARD_SIZE = 10;
 
-const submit = document.querySelector("#submit");
-submit.addEventListener("click", function() {
-  game.setNames();
-});
-
-const warn = document.querySelector("#warning");
-const p1Name = document.querySelector("#p1-name-val");
-const p2Name = document.querySelector("#p2-name-val");
-
-p1Name.addEventListener("keyup", function() {
-  checkNames();
-});
-
-p2Name.addEventListener("keyup", function() {
-  checkNames();
-});
-
-function checkNames() {
-  if (p1Name.value.trim() !== "" && p2Name.value.trim() !== "") {
-    warn.style.display = "none";
-    submit.classList.remove("uk-disabled");
-    submit.classList.remove("uk-margin-top");
-  } else {
-    warn.style.display = "";
-    submit.classList.add("uk-disabled");
-    submit.classList.add("uk-margin-top");
-  }
-}
-
 const gameSettings = {
   boardSize: 10,
   gameId: "game",
@@ -101,7 +72,7 @@ Game.prototype.setPlayerPositions = function(one, two) {
   const newPos = [one, two];
   newPos.forEach((pos, i) => {
     targetBox = document.querySelector(`#box-${pos}`);
-    newInnerHTML = "";
+    const newInnerHTML = "";
     if (targetBox.children[0] && targetBox.children[0].className === "weapon") {
       this.settings.weaponTypes.forEach((weapon, idx) => {
         if (weapon.name === targetBox.children[0].alt) {
@@ -204,7 +175,6 @@ Game.prototype.setNames = function() {
 
     toShow = document.getElementsByClassName("hidden");
     Object.values(toShow).forEach(ele => (ele.style.display = "block"));
-  } else {
   }
 };
 
@@ -248,9 +218,35 @@ Game.prototype.renderBoard = function() {
   this.getValidMoves();
 };
 
+Game.prototype.battle = function() {
+  const one = this.players[(this.activePlayer + 1) % 2].score;
+  const someOne = this.players[this.activePlayer].score;
+  if(one <= 0) {
+    console.log("Player1 Won");
+  } else {
+    console.log("Player2 Won");
+  }
+}
+
+Game.prototype.attack = function() {
+  const one = this.players[(this.activePlayer + 1) % 2];
+}
+
 Game.prototype.updateBoard = function() {
   this.setPlayerPositions(this.players[0].position, this.players[1].position);
-  this.getValidMoves();
+
+  const one = this.players[(this.activePlayer + 1) % 2].position;
+  const someOne = this.players[this.activePlayer].position;
+  const diff = Math.abs(one - someOne);
+  if (diff === 10 || diff === 1) {
+    boardBox = document.querySelector("#board-box");
+    boardBox.style.display = "none";
+
+    battle = document.querySelector("#battle");
+    battle.style.display = "block";
+  } else {
+    this.getValidMoves();
+  }
 };
 
 Game.prototype.getValidMoves = function() {
@@ -260,6 +256,7 @@ Game.prototype.getValidMoves = function() {
   parentCol = point % 10;
   directions = [1, -1, 10, -10]; // First one is for left, then right then top bottom.
   // Every cell (i,j) in grid has number 10*i+j+1
+
   directions.forEach(dir => {
     for (let i = 1; i <= that.moveLimit; i++) {
       const target = point + dir * i;

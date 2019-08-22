@@ -48,7 +48,7 @@
                         alt="P1" /></p>
             </div>
 
-            <div class="uk-card uk-text-center uk-align-center
+            <div id="board-box" class="uk-card uk-text-center uk-align-center
                 uk-card-body uk-border-rounded uk-width-1-2 uk-box-shadow-large
                 uk-text-center hidden">
 
@@ -87,23 +87,32 @@
                     <span id="warning" class="uk-text-warning">Please
                         enter non-empty name for both players.</span>
                     <br/>
-                    <a id="submit" class="uk-button uk-margin-top uk-disabled
+                        <a id="submit" class="uk-button uk-margin-top
+                            uk-disabled
+                            uk-button-secondary
+                            uk-border-pill">Submit</a>
+                    </form>
+
+                </div>
+
+                <div id="battle" class="uk-card uk-text-center uk-align-center
+                    uk-card-body uk-border-rounded uk-width-1-3
+                    uk-box-shadow-large
+                    uk-text-center">
+                    <h3>It's Battle Time 💪</h3>
+                    <a id="attack" class="uk-button uk-margin-top
+                        uk-button-danger
+                        uk-border-pill">Attack</a>
+                    <a id="defend" class="uk-margin-left uk-button uk-margin-top
                         uk-button-secondary
-                        uk-border-pill">Submit</a>
-                </form>
+                        uk-border-pill">Defend</a>
+                </div>
 
-            </div>
+            </body>
 
-            <div id="battle" class="uk-card uk-text-center uk-align-center
-                uk-card-body uk-border-rounded uk-width-1-3 uk-box-shadow-large
-                uk-text-center">
-                <h3>It's Battle Time 💪</h3>
-            </div>
-
-        </body>
-
-        <script type="text/javascript" src="js/main.js"></script>
-        <!-- UIkit JS -->
-        <script src="js/uikit.min.js"></script>
-        <script src="js/uikit-icons.min.js"></script>
-    </html>
+            <script type="text/javascript" src="js/main.js"></script>
+            <script type="text/javascript" src="js/nameForm.js"></script>
+            <!-- UIkit JS -->
+            <script src="js/uikit.min.js"></script>
+            <script src="js/uikit-icons.min.js"></script>
+        </html>
