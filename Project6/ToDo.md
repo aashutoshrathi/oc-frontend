@@ -6,7 +6,7 @@
 - Combat mode when meeting
 - Defensive mode (damage will behalf)
 - Board
-- Randomly distribute trees.
+- Randomly distribute pipes.
 
 - Classes
 - Metadata

@@ -1,8 +1,20 @@
 const imageDir = `https://aashutoshrathi.tk/oc-frontend/Project6/images/`;
 const weaponImages = `https://www.greeksymbols.net/img/`;
 
-const hurdleBlock = `<img src="${imageDir}tree.png"></img>`;
+const hurdleBlock = `<img src="${imageDir}pipe.png"></img>`;
 const BOARD_SIZE = 10;
+
+const submit = document.querySelector("#submit");
+submit.addEventListener("click", function() {
+  game.setNames();
+});
+
+submit.addEventListener("keydown", function(event) {
+  if (event.which == 13) {
+    event.preventDefault();
+    game.setNames();
+  }
+});
 
 const gameSettings = {
   boardSize: 10,
@@ -256,7 +268,3 @@ Game.prototype.getValidMoves = function() {
 };
 
 game = new Game(gameSettings);
-const submit = document.querySelector("#submit");
-submit.addEventListener("click", function() {
-  game.setNames();
-});
