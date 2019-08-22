@@ -1,7 +1,7 @@
 const imageDir = `https://aashutoshrathi.tk/oc-frontend/Project6/images/`;
 const weaponImages = `https://www.greeksymbols.net/img/`;
 
-const hurdleBlock = `<img src="${imageDir}pipe.png"></img>`;
+const hurdleBlock = `<img src="${imageDir}pipe.png?q=1"></img>`;
 const BOARD_SIZE = 10;
 
 const submit = document.querySelector("#submit");
@@ -9,12 +9,29 @@ submit.addEventListener("click", function() {
   game.setNames();
 });
 
-submit.addEventListener("keydown", function(event) {
-  if (event.which == 13) {
-    event.preventDefault();
-    game.setNames();
-  }
+const warn = document.querySelector("#warning");
+const p1Name = document.querySelector("#p1-name-val");
+const p2Name = document.querySelector("#p2-name-val");
+
+p1Name.addEventListener("keyup", function() {
+  checkNames();
 });
+
+p2Name.addEventListener("keyup", function() {
+  checkNames();
+});
+
+function checkNames() {
+  if (p1Name.value.trim() !== "" && p2Name.value.trim() !== "") {
+    warn.style.display = "none";
+    submit.classList.remove("uk-disabled");
+    submit.classList.remove("uk-margin-top");
+  } else {
+    warn.style.display = "";
+    submit.classList.add("uk-disabled");
+    submit.classList.add("uk-margin-top");
+  }
+}
 
 const gameSettings = {
   boardSize: 10,
@@ -90,7 +107,9 @@ Game.prototype.setPlayerPositions = function(one, two) {
         if (weapon.name === targetBox.children[0].alt) {
           const player = this.players[(this.activePlayer + 1) % 2];
           // if (player.weapon !== -1) {
-          //   const { image, name, score } = this.settings.weaponTypes[player.weapon];
+          //   const { image, name, score } = this.settings.weaponTypes[
+          //     player.weapon
+          //   ];
           //   newInnerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
           // }
           this.players[(this.activePlayer + 1) % 2].weapon = idx;
@@ -174,16 +193,19 @@ Game.prototype.addWeapons = function(weapons) {
 Game.prototype.setNames = function() {
   const pOneName = document.getElementById("p1-name-val").value;
   const pTwoName = document.getElementById("p2-name-val").value;
-  const names = [pOneName, pTwoName];
-  // console.log(names);
-  this.players.forEach((player, idx) => {
-    player.name = names[idx];
-  });
-  document.getElementById("name-form").style.display = "none";
-  this.updateScoreBoards();
+  if (pOneName.trim() !== "" && pTwoName.trim() !== "") {
+    const names = [pOneName, pTwoName];
+    // console.log(names);
+    this.players.forEach((player, idx) => {
+      player.name = names[idx];
+    });
+    document.getElementById("name-form").style.display = "none";
+    this.updateScoreBoards();
 
-  toShow = document.getElementsByClassName("hidden");
-  Object.values(toShow).forEach(ele => (ele.style.display = "block"));
+    toShow = document.getElementsByClassName("hidden");
+    Object.values(toShow).forEach(ele => (ele.style.display = "block"));
+  } else {
+  }
 };
 
 Game.prototype.updateScoreBoards = function() {

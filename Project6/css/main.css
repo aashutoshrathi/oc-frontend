@@ -40,3 +40,12 @@
 .hidden {
   display: none;
 }
+
+#battle {
+  display: none;
+}
+
+.uk-form-icon {
+  left: 5px;
+  width: 30px;
+}
