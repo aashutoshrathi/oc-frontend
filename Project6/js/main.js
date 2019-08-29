@@ -101,7 +101,14 @@ function generateNUniqueNumbers(length, range) {
   var arr = [];
   while (arr.length < length) {
     var r = Math.floor(Math.random() * range) + 1;
-    if (arr.indexOf(r) === -1) arr.push(r);
+    var condition = true;
+    // for(i in arr) {
+    //   if(Math.abs(r-i) !== 1 && Math.abs(r-i) !== 10) {
+    //     condition = false;
+    //     break;
+    //   }
+    // }
+    if (condition && arr.indexOf(r) === -1) arr.push(r);
   }
   return arr;
 }
@@ -142,12 +149,8 @@ Game.prototype.onClickThing = function() {
     fellow.outerHTML = fellow.outerHTML;
   });
 
-  that.activePlayer = (that.activePlayer + 1) % 2; // And after click the turn changes.
-  const turnIndicator = document.querySelector("#turn");
-  turnIndicator.src = `${imageDir}p${that.activePlayer + 1}.png`;
-
+  that.changeTurn();
   that.updateBoard();
-
   that.updateScoreBoards();
 };
 
@@ -221,16 +224,37 @@ Game.prototype.renderBoard = function() {
 Game.prototype.battle = function() {
   const one = this.players[(this.activePlayer + 1) % 2].score;
   const someOne = this.players[this.activePlayer].score;
-  if(one <= 0) {
+  if (one <= 0) {
     console.log("Player1 Won");
-  } else {
+  } else if (someOne <= 0) {
     console.log("Player2 Won");
   }
-}
+};
+
+const attackButton = document.querySelector("#attack");
+const defendButton = document.querySelector("#defend");
+attackButton.addEventListener("click", function() {
+  game.attack();
+});
+
+defendButton.addEventListener("click", function() {
+  game.defend();
+});
+
+Game.prototype.defend = function() {
+  this.changeTurn();
+};
 
 Game.prototype.attack = function() {
-  const one = this.players[(this.activePlayer + 1) % 2];
-}
+  this.changeTurn();
+};
+
+Game.prototype.changeTurn = function() {
+  that = this;
+  that.activePlayer = (that.activePlayer + 1) % 2; // And after click the turn changes.
+  const turnIndicator = document.querySelector("#turn");
+  turnIndicator.src = `${imageDir}p${that.activePlayer + 1}.png`;
+};
 
 Game.prototype.updateBoard = function() {
   this.setPlayerPositions(this.players[0].position, this.players[1].position);
