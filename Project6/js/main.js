@@ -63,12 +63,25 @@ function Player(player) {
   this.id = player.id;
   this.score = 100;
   this.weapon = -1;
+  this.xweapon = -1;
   this.name = player.name || `Player ${this.id}`;
   this.position;
 }
 
 Game.prototype.setPlayerPositions = function(one, two) {
   // console.log(`Setting players at ${one} and ${two}`);
+  actPlayer = (this.activePlayer + 1) % 2;
+  const player = this.players[actPlayer];
+
+  console.log(this.players);
+
+  if (player.xweapon !== -1) {
+    currentBox = document.querySelector(`#box-${player.position}`);
+    const { image, name, score } = this.settings.weaponTypes[player.xweapon];
+    currentBox.innerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
+    player.xweapon = -1;
+  }
+
   const newPos = [one, two];
   newPos.forEach((pos, i) => {
     targetBox = document.querySelector(`#box-${pos}`);
@@ -76,14 +89,13 @@ Game.prototype.setPlayerPositions = function(one, two) {
     if (targetBox.children[0] && targetBox.children[0].className === "weapon") {
       this.settings.weaponTypes.forEach((weapon, idx) => {
         if (weapon.name === targetBox.children[0].alt) {
-          const player = this.players[(this.activePlayer + 1) % 2];
-          // if (player.weapon !== -1) {
-          //   const { image, name, score } = this.settings.weaponTypes[
-          //     player.weapon
-          //   ];
-          //   newInnerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
-          // }
-          this.players[(this.activePlayer + 1) % 2].weapon = idx;
+          if (player.weapon === -1) {
+            player.weapon = idx;
+            // newInnerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
+          } else {
+            player.xweapon = player.weapon;
+            player.weapon = idx;
+          }
         }
       });
       targetBox.innerHTML = newInnerHTML;
@@ -91,9 +103,7 @@ Game.prototype.setPlayerPositions = function(one, two) {
 
     if (targetBox.children.length < 1)
       targetBox.innerHTML += `<img width="45px" src="${imageDir}p${i +
-        1}.png" alt="P${i + 1}" title="${
-        this.players[(this.activePlayer + 1) % 2].name
-      }"/>`;
+        1}.png" alt="P${i + 1}" title="${this.players[actPlayer].name}"/>`;
   });
 };
 
@@ -293,7 +303,25 @@ Game.prototype.gameOver = function() {
   document.querySelector("#turn-div").style.display = "none";
   document.querySelector("#attack").style.display = "none";
   document.querySelector("#defend").style.display = "none";
-  document.querySelector("#battle").innerHTML = `<h3> Game Over </h3>`;
+
+  whoWon = "";
+
+  if (this.players[0].score == 0) {
+    whoWon = this.players[1].name;
+  }
+  if (this.players[1].score == 0) {
+    whoWon = this.players[0].name;
+  }
+
+  document.querySelector("#battle").innerHTML = `<h3> Game Over </h3>
+  <br> 
+  <h3>${whoWon} won the game! 🎉</h3> 
+  <br>
+  <a id="reset" class="uk-button uk-button-secondary uk-border-pill">Start New Game</a>`;
+
+  document.querySelector("#reset").addEventListener("click", function() {
+    location.reload(true);
+  });
 };
 
 Game.prototype.updateBoard = function() {
