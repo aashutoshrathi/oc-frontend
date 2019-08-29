@@ -193,11 +193,7 @@ Game.prototype.updateScoreBoards = function() {
     document.querySelector(`#p${id}-weapon`).innerHTML =
       wpnIdx === -1
         ? "None"
-        : `<img class="weapon-in-card" src=${
-            this.settings.weaponTypes[wpnIdx].image
-          } alt="${this.settings.weaponTypes[wpnIdx].name}" title="${
-            this.settings.weaponTypes[wpnIdx].score
-          }""> (${this.settings.weaponTypes[wpnIdx].score})`;
+        : `<img class="weapon-in-card" src=${this.settings.weaponTypes[wpnIdx].image} alt="${this.settings.weaponTypes[wpnIdx].name}" title="${this.settings.weaponTypes[wpnIdx].score}""> (${this.settings.weaponTypes[wpnIdx].score})`;
   }
 };
 
@@ -242,18 +238,62 @@ defendButton.addEventListener("click", function() {
 });
 
 Game.prototype.defend = function() {
+  actPlayer = this.activePlayer;
+  if (this.players[actPlayer].score > 5) {
+    this.players[actPlayer].score -= 5;
+  } else {
+    this.players[actPlayer].score = 0;
+  }
+  this.updateScoreBoards();
   this.changeTurn();
 };
 
 Game.prototype.attack = function() {
+  actPlayer = this.activePlayer;
+  weapon = this.players[actPlayer].weapon;
+  document.querySelector("#attack").style.display = "";
+  let power;
+  if (weapon === -1) {
+    power = -1;
+  } else {
+    weapons = this.settings.weaponTypes;
+    power = weapons[weapon].score;
+    console.table({ power, weapon, actPlayer });
+    if (this.players[(actPlayer + 1) % 2].score > power)
+      this.players[(actPlayer + 1) % 2].score -= power;
+    else {
+      this.players[(actPlayer + 1) % 2].score = 0;
+    }
+  }
+
+  this.updateScoreBoards();
   this.changeTurn();
 };
 
 Game.prototype.changeTurn = function() {
   that = this;
+  document.querySelector("#attack").style.display = "";
   that.activePlayer = (that.activePlayer + 1) % 2; // And after click the turn changes.
   const turnIndicator = document.querySelector("#turn");
   turnIndicator.src = `${imageDir}p${that.activePlayer + 1}.png`;
+  actPlayer = this.activePlayer;
+  weapon = this.players[actPlayer].weapon;
+  if (weapon === -1) {
+    document.querySelector("#attack").style.display = "none";
+  }
+  if (
+    this.players[actPlayer].score === 0 ||
+    this.players[(actPlayer + 1) % 2] === 0
+  ) {
+    this.gameOver();
+  }
+};
+
+Game.prototype.gameOver = function() {
+  document.querySelector("#turn-div").style.display = "none";
+  document.querySelector("#attack").style.display = "none";
+  document.querySelector("#defend").style.display = "none";
+  document.querySelector("#battle").innerHTML = `<h3> Game Over </h3>`;
 };
 
 Game.prototype.updateBoard = function() {
