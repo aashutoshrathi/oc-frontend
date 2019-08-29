@@ -1,73 +1,3 @@
-const imageDir = `https://aashutoshrathi.tk/oc-frontend/Project6/images/`;
-const weaponImages = `https://www.greeksymbols.net/img/`;
-
-const hurdleBlock = `<img src="${imageDir}pipe.png?q=1"></img>`;
-const BOARD_SIZE = 10;
-
-const gameSettings = {
-  boardSize: 10,
-  gameId: "game",
-  moveLimit: 3,
-  weaponTypes: [
-    {
-      image: `${weaponImages}alpha-symbol.png`,
-      score: 10,
-      name: "alpha"
-    },
-    {
-      image: `${weaponImages}beta-symbol.png`,
-      score: 20,
-      name: "beta"
-    },
-    {
-      image: `${weaponImages}gamma-symbol.png`,
-      score: 30,
-      name: "gamma"
-    },
-    {
-      image: `${weaponImages}delta-symbol.png`,
-      score: 40,
-      name: "delta"
-    },
-    {
-      image: `${weaponImages}pi-symbol.png`,
-      score: 50,
-      name: "pi"
-    }
-  ],
-  players: [
-    {
-      name: "Player One"
-    },
-    {
-      name: "Player Two"
-    }
-  ]
-};
-
-function Game(gameSettings) {
-  this.settings = gameSettings;
-  this.activePlayer = 0;
-  this.moveLimit = gameSettings.moveLimit;
-  this.players = gameSettings.players.map((player, idx) => {
-    player["id"] = idx;
-    return new Player(player, this);
-  }, this);
-  this.grid = new Array(100).fill(0);
-
-  // Render that bad boy
-  this.renderBoard();
-}
-
-function Player(player) {
-  this.id = player.id;
-  this.score = 100;
-  this.weapon = -1;
-  this.xweapon = -1;
-  this.name = player.name || `Player ${this.id}`;
-  this.position;
-}
-
 Game.prototype.setPlayerPositions = function(one, two) {
   // console.log(`Setting players at ${one} and ${two}`);
   actPlayer = (this.activePlayer + 1) % 2;
@@ -91,7 +21,6 @@ Game.prototype.setPlayerPositions = function(one, two) {
         if (weapon.name === targetBox.children[0].alt) {
           if (player.weapon === -1) {
             player.weapon = idx;
-            // newInnerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
           } else {
             player.xweapon = player.weapon;
             player.weapon = idx;
@@ -112,12 +41,6 @@ function generateNUniqueNumbers(length, range) {
   while (arr.length < length) {
     var r = Math.floor(Math.random() * range) + 1;
     var condition = true;
-    // for(i in arr) {
-    //   if(Math.abs(r-i) !== 1 && Math.abs(r-i) !== 10) {
-    //     condition = false;
-    //     break;
-    //   }
-    // }
     if (condition && arr.indexOf(r) === -1) arr.push(r);
   }
   return arr;
@@ -313,7 +236,9 @@ Game.prototype.gameOver = function() {
     whoWon = this.players[0].name;
   }
 
-  document.querySelector("#battle").innerHTML = `<h3> Game Over </h3>
+  document.querySelector(
+    "#battle"
+  ).innerHTML = `<h2 class="uk-text-success"> Game Over </h2>
   <br> 
   <h3>${whoWon} won the game! 🎉</h3> 
   <br>
