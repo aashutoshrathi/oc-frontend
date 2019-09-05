@@ -9,117 +9,129 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css">
         <link rel="icon" href="media/favicon.png" type="image/png" />
+        <!-- Local CSS -->
         <link rel="stylesheet" href="css/main.css" type="text/css">
     </head>
     <body>
+        <!-- Heading -->
         <h1 class='uk-text-center uk-padding-small uk-text-emphasis'>Board Game</h1>
-        <br/>
-            <div id="player1-card" class='uk-align-left uk-card-body
-                uk-card-secondary'>
-                <img
+        <br>
+
+        <!-- Score Card for Player 1 on the let -->
+        <div id="player1-card" class='uk-align-left uk-card-body
+            uk-card-secondary'>
+            <img
+                src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p1.png"
+                alt="P1" />
+            <p class='uk-text-emphasis'><span id="p1-name"></span></p>
+            <p class='uk-text-bold'>Score: <span id="p1-score"></span></p>
+            <p class='uk-text-bold'>Weapon: <span id="p1-weapon"></span></p>
+        </div>
+
+        <!-- Score Card for Player 2 on the right -->
+        <div id="player2-card" class='uk-align-right uk-margin-top
+            uk-card-body
+            uk-card-secondary'>
+            <img
+                src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p2.png"
+                alt="P2" />
+            <p class='uk-text-emphasis'><span id="p2-name"></span></p>
+            <p class='uk-text-bold'>Score:
+                <span id="p2-score"></span>
+            </p>
+            <p class='uk-text-bold'>Weapon:
+                <span id="p2-weapon"></span>
+            </p>
+        </div>
+
+        <!-- The turn indicator div -->
+        <div id="turn-div">
+            <p class="uk-text-lead uk-text-center hidden">Current Turn: <img
+                    id="turn"
                     src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p1.png"
-                    alt="P1" />
-                <p class='uk-text-emphasis'><span id="p1-name"></span></p>
-                <p class='uk-text-bold'>Score: <span id="p1-score"></span></p>
-                <p class='uk-text-bold'>Weapon: <span id="p1-weapon"></span></p>
-            </div>
+                    alt="P1" /></p>
+        </div>
 
-            <div id="player2-card" class='uk-align-right uk-margin-top
-                uk-card-body
-                uk-card-secondary'>
-                <img
-                    src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p2.png"
-                    alt="P2" />
-                <p class='uk-text-emphasis'><span id="p2-name"></span></p>
-                <p class='uk-text-bold'>Score:
-                    <span id="p2-score"></span>
-                </p>
-                <p class='uk-text-bold'>Weapon:
-                    <span id="p2-weapon"></span>
-                </p>
-            </div>
+        <!-- The main game box -->
+        <div id="board-box" class="uk-card uk-text-center uk-align-center
+            uk-card-body uk-border-rounded uk-width-1@s uk-width-1-2 uk-box-shadow-large
+            uk-text-center hidden">
 
-            <div id="turn-div">
-                <p class="uk-text-lead uk-text-center hidden">Current Turn: <img
-                        id="turn"
-                        src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p1.png"
-                        alt="P1" /></p>
-            </div>
+            <div class="uk-align-center hidden" id="board"></div>
+        </div>
 
-            <div id="board-box" class="uk-card uk-text-center uk-align-center
-                uk-card-body uk-border-rounded uk-width-1-2 uk-box-shadow-large
-                uk-text-center hidden">
+        <!-- Initial Game Form -->
+        <div id="name-form" class="uk-card uk-text-center uk-align-center
+            uk-card-body uk-border-rounded uk-width-1-3 uk-box-shadow-large
+            uk-text-center">
+            <h3>Let's Play</h3>
+            Please fill up your names to proceed
 
-                <div class="uk-align-center hidden" id="board"></div>
-            </div>
-
-            <div id="name-form" class="uk-card uk-text-center uk-align-center
-                uk-card-body uk-border-rounded uk-width-1-3 uk-box-shadow-large
-                uk-text-center">
-                <h3>Let's Play</h3>
-                Please fill up your names to proceed
-
-                <form class="uk-margin">
-                    <div class="uk-margin">
-                        <div class="uk-inline">
-                            <span class="uk-form-icon">
-                                <img
-                                    src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p1.png"
-                                    alt="P1" />
-                            </span>
-                            <input class="uk-input" id="p1-name-val"
-                                placeholder="Player 1 Name" type="text">
-                        </div>
+            <form class="uk-margin">
+                <div class="uk-margin">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon">
+                            <img
+                                src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p1.png"
+                                alt="P1" />
+                        </span>
+                        <input class="uk-input" id="p1-name-val"
+                            placeholder="Player 1 Name" type="text">
                     </div>
-                    <div class="uk-margin">
-                        <div class="uk-inline">
-                            <span class="uk-form-icon">
-                                <img
-                                    src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p2.png"
-                                    alt="P2" />
-                            </span>
-                            <input class="uk-input" id="p2-name-val"
-                                placeholder="Player 2 Name" type="text">
-                        </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon">
+                            <img
+                                src="https://aashutoshrathi.tk/oc-frontend/Project6/images/p2.png"
+                                alt="P2" />
+                        </span>
+                        <input class="uk-input" id="p2-name-val"
+                            placeholder="Player 2 Name" type="text">
                     </div>
-                    <span id="warning" class="uk-text-warning">Please
-                        enter non-empty name for both players.</span>
-                    <br/>
-                        <a id="submit" class="uk-button uk-margin-top
-                            uk-disabled
-                            uk-button-secondary
-                            uk-border-pill">Let us Play now</a>
-                    </form>
-
                 </div>
+                <span id="warning" class="uk-text-warning">Please
+                    enter non-empty name for both players.</span>
+                <br>
+                <a id="submit" class="uk-button uk-margin-top
+                    uk-disabled
+                    uk-button-secondary
+                    uk-border-pill">Let us Play now</a>
+            </form>
 
-                <div id="battle" class="uk-card uk-text-center uk-align-center
-                    uk-card-body uk-border-rounded uk-width-1-3
-                    uk-box-shadow-large
-                    uk-text-center">
-                    <h3>It's Battle Time 💪</h3>
-                    <a uk-tooltip="title: Attack; pos: bottom"
-                        class="uk-button-icon uk-margin-right">
-                        <img id="attack" class="battle-choices"
-                            src="images/attack.svg" />
-                    </a>
+        </div>
 
-                    <a uk-tooltip="title: Defend; pos: bottom"
-                        class="uk-button-icon">
-                        <img id="defend" class="battle-choices"
-                            src="images/defense.svg" />
-                    </a>
-                </div>
-            </body>
 
-            <script type="text/javascript" src="js/constants.js"></script>
-            <script type="text/javascript" src="js/game.js"></script>
-            <script type="text/javascript" src="js/player.js"></script>
-            <script type="text/javascript" src="js/util.js"></script>
-            <script type="text/javascript" src="js/battle.js"></script>
-            <script type="text/javascript" src="js/main.js"></script>
-            <script type="text/javascript" src="js/nameForm.js"></script>
-            <!-- UIkit JS -->
-            <script src="js/uikit/uikit.min.js"></script>
-            <script src="js/uikit/uikit-icons.min.js"></script>
-        </html>
+        <!-- The battlefield after players meet -->
+        <div id="battle" class="uk-card uk-text-center uk-align-center
+            uk-card-body uk-border-rounded uk-width-1-3
+            uk-box-shadow-large
+            uk-text-center">
+            <h3>It's Battle Time 💪</h3>
+            <a uk-tooltip="title: Attack; pos: bottom"
+                class="uk-button-icon uk-margin-right">
+                <img id="attack" class="battle-choices"
+                    src="images/attack.svg" />
+            </a>
+
+            <a uk-tooltip="title: Defend; pos: bottom"
+                class="uk-button-icon">
+                <img id="defend" class="battle-choices"
+                    src="images/defense.svg" />
+            </a>
+        </div>
+    </body>
+
+    <!-- Local JS Imports -->
+    <script type="text/javascript" src="js/constants.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" src="js/battle.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/nameForm.js"></script>
+
+    <!-- UIkit JS -->
+    <script src="js/uikit/uikit.min.js"></script>
+    <script src="js/uikit/uikit-icons.min.js"></script>
+</html>

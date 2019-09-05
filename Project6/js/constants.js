@@ -26,9 +26,9 @@ const gameSettings = {
       name: "SMG"
     },
     {
-      image: `${weaponImages}pistol.svg`,
+      image: `${weaponImages}rifle.svg`,
       score: 40,
-      name: "Pistol"
+      name: "Rifle"
     },
     {
       image: `${weaponImages}awp.svg`,
