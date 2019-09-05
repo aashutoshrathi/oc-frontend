@@ -93,6 +93,7 @@ Game.prototype.renderBoard = function() {
 Game.prototype.changeTurn = function() {
   that = this;
   document.querySelector("#attack").style.display = "";
+  document.querySelector("#attack").classList.add("uk-margin-right");
   that.activePlayer = (that.activePlayer + 1) % 2; // And after click the turn changes.
   const turnIndicator = document.querySelector("#turn");
   turnIndicator.src = `${imageDir}p${that.activePlayer + 1}.png`;
@@ -100,6 +101,7 @@ Game.prototype.changeTurn = function() {
   weapon = this.players[actPlayer].weapon;
   if (weapon === -1) {
     document.querySelector("#attack").style.display = "none";
+    document.querySelector("#attack").classList.remove("uk-margin-right");
   }
   if (
     this.players[actPlayer].score === 0 ||
@@ -155,12 +157,14 @@ Game.prototype.getValidMoves = function() {
         document
           .querySelector(`#box-${target}`)
           .addEventListener("click", function() {
-            if(actPlayer.xweapon !== -1) {
+            if (actPlayer.xweapon !== -1) {
               that.setPrevWeapon(point);
               actPlayer.xweapon = -1;
-            }
-            else if (actPlayer.weapon !== -1 && (targetBox.children[0] &&
-              targetBox.children[0].className === "weapon")) {
+            } else if (
+              actPlayer.weapon !== -1 &&
+              (targetBox.children[0] &&
+                targetBox.children[0].className === "weapon")
+            ) {
               actPlayer.xweapon = actPlayer.weapon;
               resetBox(point);
             } else {

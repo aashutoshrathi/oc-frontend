@@ -55,6 +55,14 @@ function generateNUniqueNumbers(length, range) {
   while (arr.length < length) {
     var r = Math.floor(Math.random() * range) + 1;
     var condition = true;
+    // This condition keeps check nothing is in 3m radius
+    for(let i=0; i<arr.length; i++) {
+      diff = Math.abs(r-arr[i]);
+      if( (diff%10 === 0 && diff/(10) <=3) || diff <= 3) {
+        condition = false;
+        break;
+      }
+    }
     if (condition && arr.indexOf(r) === -1) arr.push(r);
   }
   return arr;
