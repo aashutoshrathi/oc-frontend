@@ -49,3 +49,16 @@
   left: 5px;
   width: 30px;
 }
+
+.battle-choices {
+  width: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .box {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    border: black solid 0.1px;
+  }  
+}

@@ -1,5 +1,6 @@
 const imageDir = `https://aashutoshrathi.tk/oc-frontend/Project6/images/`;
-const weaponImages = `https://www.greeksymbols.net/img/`;
+const weaponImages =
+  "https://aashutoshrathi.tk/oc-frontend/Project6/images/weapons/";
 
 const hurdleBlock = `<img src="${imageDir}pipe.png?q=1"></img>`;
 const BOARD_SIZE = 10;
@@ -10,29 +11,29 @@ const gameSettings = {
   moveLimit: 3,
   weaponTypes: [
     {
-      image: `${weaponImages}alpha-symbol.png`,
+      image: `${weaponImages}knife.svg`,
       score: 10,
-      name: "alpha"
+      name: "Knife"
     },
     {
-      image: `${weaponImages}beta-symbol.png`,
+      image: `${weaponImages}pistol.svg`,
       score: 20,
-      name: "beta"
+      name: "Pistol"
     },
     {
-      image: `${weaponImages}gamma-symbol.png`,
+      image: `${weaponImages}smg.svg`,
       score: 30,
-      name: "gamma"
+      name: "SMG"
     },
     {
-      image: `${weaponImages}delta-symbol.png`,
+      image: `${weaponImages}pistol.svg`,
       score: 40,
-      name: "delta"
+      name: "Pistol"
     },
     {
-      image: `${weaponImages}pi-symbol.png`,
+      image: `${weaponImages}awp.png`,
       score: 50,
-      name: "pi"
+      name: "AWP"
     }
   ],
   players: [

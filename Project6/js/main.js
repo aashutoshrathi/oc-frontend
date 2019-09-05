@@ -27,28 +27,6 @@ Game.prototype.setPlayerPositions = function(one, two) {
   });
 };
 
-function generateNUniqueNumbers(length, range) {
-  var arr = [];
-  while (arr.length < length) {
-    var r = Math.floor(Math.random() * range) + 1;
-    var condition = true;
-    if (condition && arr.indexOf(r) === -1) arr.push(r);
-  }
-  return arr;
-}
-
-function initEmptyBoard() {
-  board = document.querySelector("#board");
-
-  for (let i = 0; i < BOARD_SIZE; i++) {
-    board.innerHTML += `<div class="row" id="row-${i + 1}"></div>`;
-    row = document.querySelector(`#row-${i + 1}`);
-    for (let j = 0; j < BOARD_SIZE; j++) {
-      row.innerHTML += `<div class="box" id="box-${i * BOARD_SIZE + j}"></div>`;
-    }
-  }
-}
-
 Game.prototype.addHurdles = function(hurdles) {
   var that = this;
   console.log(this);
@@ -58,13 +36,6 @@ Game.prototype.addHurdles = function(hurdles) {
     that.grid[hurdle] = "H";
   });
 };
-
-function resetBox(boxNum) {
-  // Removes onClick thing
-  box = document.querySelector(`#box-${boxNum}`);
-  box.innerHTML = "";
-  box.outerHTML = box.outerHTML;
-}
 
 Game.prototype.setPrevWeapon = function(boxNum) {
   // Removes onClick thing
@@ -99,39 +70,6 @@ Game.prototype.addWeapons = function(weapons) {
   });
 };
 
-Game.prototype.setNames = function() {
-  const pOneName = document.getElementById("p1-name-val").value;
-  const pTwoName = document.getElementById("p2-name-val").value;
-  if (pOneName.trim() !== "" && pTwoName.trim() !== "") {
-    const names = [pOneName, pTwoName];
-    // console.log(names);
-    this.players.forEach((player, idx) => {
-      player.name = names[idx];
-    });
-    document.getElementById("name-form").style.display = "none";
-    this.updateScoreBoards();
-
-    toShow = document.getElementsByClassName("hidden");
-    Object.values(toShow).forEach(ele => (ele.style.display = "block"));
-  }
-};
-
-Game.prototype.updateScoreBoards = function() {
-  for (let id = 1; id <= 2; id++) {
-    document.querySelector(`#p${id}-name`).innerText = this.players[
-      id - 1
-    ].name;
-    document.querySelector(`#p${id}-score`).innerText = this.players[
-      id - 1
-    ].score;
-    const wpnIdx = this.players[id - 1].weapon;
-    document.querySelector(`#p${id}-weapon`).innerHTML =
-      wpnIdx === -1
-        ? "None"
-        : `<img class="weapon-in-card" src=${this.settings.weaponTypes[wpnIdx].image} alt="${this.settings.weaponTypes[wpnIdx].name}" title="${this.settings.weaponTypes[wpnIdx].score}""> (${this.settings.weaponTypes[wpnIdx].score})`;
-  }
-};
-
 Game.prototype.renderBoard = function() {
   initEmptyBoard();
   randomNumbers = generateNUniqueNumbers(17, 99);
@@ -152,59 +90,6 @@ Game.prototype.renderBoard = function() {
   this.getValidMoves();
 };
 
-Game.prototype.battle = function() {
-  const one = this.players[(this.activePlayer + 1) % 2].score;
-  const someOne = this.players[this.activePlayer].score;
-  if (one <= 0) {
-    console.log("Player1 Won");
-  } else if (someOne <= 0) {
-    console.log("Player2 Won");
-  }
-};
-
-const attackButton = document.querySelector("#attack");
-const defendButton = document.querySelector("#defend");
-attackButton.addEventListener("click", function() {
-  game.attack();
-});
-
-defendButton.addEventListener("click", function() {
-  game.defend();
-});
-
-Game.prototype.defend = function() {
-  actPlayer = this.activePlayer;
-  if (this.players[actPlayer].score > 5) {
-    this.players[actPlayer].score -= 5;
-  } else {
-    this.players[actPlayer].score = 0;
-  }
-  this.updateScoreBoards();
-  this.changeTurn();
-};
-
-Game.prototype.attack = function() {
-  actPlayer = this.activePlayer;
-  weapon = this.players[actPlayer].weapon;
-  document.querySelector("#attack").style.display = "";
-  let power;
-  if (weapon === -1) {
-    power = -1;
-  } else {
-    weapons = this.settings.weaponTypes;
-    power = weapons[weapon].score;
-    console.table({ power, weapon, actPlayer });
-    if (this.players[(actPlayer + 1) % 2].score > power)
-      this.players[(actPlayer + 1) % 2].score -= power;
-    else {
-      this.players[(actPlayer + 1) % 2].score = 0;
-    }
-  }
-
-  this.updateScoreBoards();
-  this.changeTurn();
-};
-
 Game.prototype.changeTurn = function() {
   that = this;
   document.querySelector("#attack").style.display = "";
@@ -222,33 +107,6 @@ Game.prototype.changeTurn = function() {
   ) {
     this.gameOver();
   }
-};
-
-Game.prototype.gameOver = function() {
-  document.querySelector("#turn-div").style.display = "none";
-  document.querySelector("#attack").style.display = "none";
-  document.querySelector("#defend").style.display = "none";
-
-  whoWon = "";
-
-  if (this.players[0].score == 0) {
-    whoWon = this.players[1].name;
-  }
-  if (this.players[1].score == 0) {
-    whoWon = this.players[0].name;
-  }
-
-  document.querySelector(
-    "#battle"
-  ).innerHTML = `<h2 class="uk-text-success"> Game Over </h2>
-  <br> 
-  <h3>${whoWon} won the game! 🎉</h3> 
-  <br>
-  <a id="reset" class="uk-button uk-button-secondary uk-border-pill">Start New Game</a>`;
-
-  document.querySelector("#reset").addEventListener("click", function() {
-    location.reload(true);
-  });
 };
 
 Game.prototype.updateBoard = function() {

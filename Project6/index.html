@@ -6,7 +6,6 @@
         <meta name="mobile-web-app-capable" content="yes">
 
         <title>Board Game</title>
-        <!-- UIkit CSS -->
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css">
         <link rel="icon" href="media/favicon.png" type="image/png" />
@@ -15,7 +14,6 @@
     <body>
         <h1 class='uk-text-center uk-padding-small uk-text-emphasis'>Board Game</h1>
         <br/>
-
             <div id="player1-card" class='uk-align-left uk-card-body
                 uk-card-secondary'>
                 <img
@@ -90,7 +88,7 @@
                         <a id="submit" class="uk-button uk-margin-top
                             uk-disabled
                             uk-button-secondary
-                            uk-border-pill">Submit</a>
+                            uk-border-pill">Let us Play now</a>
                     </form>
 
                 </div>
@@ -100,19 +98,25 @@
                     uk-box-shadow-large
                     uk-text-center">
                     <h3>It's Battle Time 💪</h3>
-                    <a id="attack" class="uk-button uk-margin-top
-                        uk-button-danger
-                        uk-border-pill">Attack</a>
-                    <a id="defend" class="uk-margin-left uk-button uk-margin-top
-                        uk-button-secondary
-                        uk-border-pill">Defend</a>
-                </div>
+                    <a uk-tooltip="title: Attack; pos: bottom"
+                        class="uk-button-icon uk-margin-right">
+                        <img id="attack" class="battle-choices"
+                            src="images/attack.svg" />
+                    </a>
 
+                    <a uk-tooltip="title: Defend; pos: bottom"
+                        class="uk-button-icon">
+                        <img id="defend" class="battle-choices"
+                            src="images/defense.svg" />
+                    </a>
+                </div>
             </body>
 
             <script type="text/javascript" src="js/constants.js"></script>
             <script type="text/javascript" src="js/game.js"></script>
             <script type="text/javascript" src="js/player.js"></script>
+            <script type="text/javascript" src="js/util.js"></script>
+            <script type="text/javascript" src="js/battle.js"></script>
             <script type="text/javascript" src="js/main.js"></script>
             <script type="text/javascript" src="js/nameForm.js"></script>
             <!-- UIkit JS -->

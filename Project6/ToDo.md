@@ -27,7 +27,7 @@
 ## 60% - 8th Aug
 
 - Default weapon (weakest) at begining
-- Weapon replacement (to be fixed)
+<!-- - Weapon replacement (to be fixed) -->
 - Initially both the players shouldn't be at adjacent places.
-- Add attack and defend icon
+<!-- - Add attack and defend icon -->
 - remove left padding from defend when no attack
