@@ -5,13 +5,6 @@ Game.prototype.setPlayerPositions = function(one, two) {
 
   console.log(this.players);
 
-  if (player.xweapon !== -1) {
-    currentBox = document.querySelector(`#box-${player.position}`);
-    const { image, name, score } = this.settings.weaponTypes[player.xweapon];
-    currentBox.innerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
-    player.xweapon = -1;
-  }
-
   const newPos = [one, two];
   newPos.forEach((pos, i) => {
     targetBox = document.querySelector(`#box-${pos}`);
@@ -19,16 +12,21 @@ Game.prototype.setPlayerPositions = function(one, two) {
     if (targetBox.children[0] && targetBox.children[0].className === "weapon") {
       this.settings.weaponTypes.forEach((weapon, idx) => {
         if (weapon.name === targetBox.children[0].alt) {
-          if (player.weapon === -1) {
-            player.weapon = idx;
-          } else {
+          if (player.weapon !== -1) {
             player.xweapon = player.weapon;
-            player.weapon = idx;
           }
+          player.weapon = idx;
         }
       });
       targetBox.innerHTML = newInnerHTML;
     }
+
+    // if (player.xweapon !== -1) {
+    //   currentBox = document.querySelector(`#box-${player.position}`);
+    //   const { image, name, score } = this.settings.weaponTypes[player.xweapon];
+    //   currentBox.innerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
+    //   player.xweapon = -1;
+    // }
 
     if (targetBox.children.length < 1)
       targetBox.innerHTML += `<img width="45px" src="${imageDir}p${i +
@@ -69,14 +67,25 @@ Game.prototype.addHurdles = function(hurdles) {
 };
 
 function resetBox(boxNum) {
+  // Removes onClick thing
   box = document.querySelector(`#box-${boxNum}`);
   box.innerHTML = "";
   box.outerHTML = box.outerHTML;
 }
 
+Game.prototype.setPrevWeapon = function(boxNum) {
+  // Removes onClick thing
+  actPlayer = this.players[this.activePlayer];
+  box = document.querySelector(`#box-${boxNum}`);
+  const { image, name, score } = this.settings.weaponTypes[actPlayer.weapon];
+  box.innerHTML = `<img class="weapon" src="${image}" alt="${name}" title="${score}"/>`;
+  box.outerHTML = box.outerHTML;
+};
+
 Game.prototype.onClickThing = function() {
   const that = this;
   const dirtyFellows = document.getElementsByClassName("possible");
+  // This is to remove onClick from box
   Object.values(dirtyFellows).forEach(fellow => {
     fellow.className = "box";
     fellow.outerHTML = fellow.outerHTML;
@@ -251,7 +260,6 @@ Game.prototype.gameOver = function() {
 
 Game.prototype.updateBoard = function() {
   this.setPlayerPositions(this.players[0].position, this.players[1].position);
-
   const one = this.players[(this.activePlayer + 1) % 2].position;
   const someOne = this.players[this.activePlayer].position;
   const diff = Math.abs(one - someOne);
@@ -291,10 +299,16 @@ Game.prototype.getValidMoves = function() {
       const rangeCondition = target >= 0 && target < 100;
       if (rangeCondition && (verticalCon || horizontalCon)) {
         document.querySelector(`#box-${target}`).className += " possible"; // possible class gives yellow bg to cell
+        actPlayer = that.players[that.activePlayer];
+        targetBox = document.querySelector(`#box-${target}`);
         document
           .querySelector(`#box-${target}`)
           .addEventListener("click", function() {
-            resetBox(that.players[that.activePlayer].position);
+            if (actPlayer.weapon !== -1 && targetBox.children[0] && targetBox.children[0].className === "weapon") {
+              that.setPrevWeapon(actPlayer.position);
+            } else {
+              resetBox(actPlayer.position);
+            }
             that.players[that.activePlayer].position = target;
             that.onClickThing();
           }); // this is onclick event which will move player soon.
