@@ -304,6 +304,7 @@ Game.prototype.getValidMoves = function() {
             else if (actPlayer.weapon !== -1 && (targetBox.children[0] &&
               targetBox.children[0].className === "weapon")) {
               actPlayer.xweapon = actPlayer.weapon;
+              resetBox(point);
             } else {
               resetBox(point);
             }
