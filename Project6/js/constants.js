@@ -31,7 +31,7 @@ const gameSettings = {
       name: "Pistol"
     },
     {
-      image: `${weaponImages}awp.png`,
+      image: `${weaponImages}awp.svg`,
       score: 50,
       name: "AWP"
     }
