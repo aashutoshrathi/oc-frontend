@@ -54,9 +54,22 @@
   width: 50px;
 }
 
+footer {
+  display: block;
+
+}
+
 @media only screen and (max-width: 600px) {
   .box {
     width: 30px;
     height: 30px;
+  }
+
+  #player1-card, #player2-card {
+    display: none;
+  }
+
+  #board-box, #name-form {
+    width: 95%;
   }
 }
