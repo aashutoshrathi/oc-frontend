@@ -98,6 +98,6 @@ export default GoogleApiWrapper({
 
 const mapStyles = {
   width: `calc(100% - 360px)`,
-  marginTop: "2.5%",
-  height: "90%"
+  marginTop: "3.4%",
+  height: "92.6%"
 };
