@@ -1,47 +1,99 @@
 import React, { useState } from "react";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import { MAP_API_KEY } from "../config.js";
 
 const MapContainer = props => {
-  const [state, setState] = useState({});
-  let location = {};
-  window.navigator.geolocation.getCurrentPosition(function x(a) {
-    location = a.coords;
+  const [state, setState] = useState({
+    location: {},
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {}
   });
 
-  // setState({stores: location});
+  window.navigator.geolocation.getCurrentPosition(function getCoords(loc) {
+    setState({ location: loc.coords });
+  });
 
-  console.log(state);
+  const getPlaces = () => {
+    const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${state.location.latitude},${state.location.longitude}&radius=1500&type=restaurant&key=${MAP_API_KEY}`;
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(e => console.log(e));
+  };
+
+  const onMarkerClick = (props, marker, e) => {
+    getPlaces();
+    setState({
+      ...state,
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+    console.log(state);
+  };
+
+  const onMapClicked = props => {
+    if (state.showingInfoWindow) {
+      setState({ ...state, showingInfoWindow: false, activeMarker: null });
+    }
+    console.log(state);
+  };
 
   const displayMarkers = () => {
     return (
       <Marker
         position={{
-          lat: 97.155,
-          lng: 39.25
+          lat: state.location.latitude,
+          lng: state.location.longitude
         }}
-        onClick={() => console.log("You clicked me!")}
+        onClick={onMarkerClick}
       />
     );
   };
 
   return (
-    <Map
-      google={props.google}
-      zoom={8}
-      style={mapStyles}
-      initialCenter={{
-        lat: state.stores.latitude,
-        lng: state.stores.longitude
-      }}
-    >
-      {displayMarkers()}
-    </Map>
+    <>
+      {state.location.longitude && (
+        <Map
+          google={props.google}
+          zoom={12}
+          style={mapStyles}
+          onClick={onMapClicked}
+          initialCenter={{
+            lat: state.location.latitude,
+            lng: state.location.longitude
+          }}
+        >
+          {displayMarkers()}
+          {state.showingInfoWindow && (
+            <InfoWindow
+              marker={state.activeMarker}
+              visible={state.showingInfoWindow}
+            >
+              <div>
+                {/* <h1>{state.selectedPlace.name}</h1> */}
+                <h1>Hi</h1>
+              </div>
+            </InfoWindow>
+          )}
+        </Map>
+      )}
+    </>
   );
 };
 
+// const LoadingContainer = (props) => (
+//   <div>Fancy loading container!</div>
+// )
+
 export default GoogleApiWrapper({
   apiKey: MAP_API_KEY
+  // LoadingContainer: LoadingContainer
 })(MapContainer);
 
 const mapStyles = {

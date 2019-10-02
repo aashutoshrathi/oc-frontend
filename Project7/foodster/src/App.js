@@ -65,7 +65,7 @@ export default function App() {
         anchor="left"
       >
         <div className={classes.toolbar}>
-          <h2>Hotels List</h2>
+          <h2>Restaurants List</h2>
         </div>
 
         <Divider />
