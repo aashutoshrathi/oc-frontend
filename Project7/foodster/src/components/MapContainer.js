@@ -42,8 +42,20 @@ const MapContainer = props => {
     }
   };
 
+  // const displayCurrentLocation = () => {
+  //   return (
+  //     <Marker
+  //       position={{
+  //         lat: state.location.latitude,
+  //         lng: state.location.longitude
+  //       }}
+  //       name={"Your location"}
+  //       onClick={onMarkerClick}
+  //     />
+  //   );
+  // };
+
   const displayMarkers = () => {
-    console.log(state.places);
     return state.places.map(place => {
       return (
         <Marker
@@ -64,7 +76,7 @@ const MapContainer = props => {
       {state.location.longitude && (
         <Map
           google={props.google}
-          zoom={15}
+          zoom={18}
           style={mapStyles}
           onReady={getPlaces}
           onClick={onMapClicked}
