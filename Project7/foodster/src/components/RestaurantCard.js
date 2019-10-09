@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function HotelCard(props) {
+export default function RestaurantCard(props) {
   const classes = useStyles();
   const hotel = props.hotel;
   return (

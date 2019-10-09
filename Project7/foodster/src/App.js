@@ -1,16 +1,11 @@
 import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import hotels from "../src/data/hotels.js";
-import HotelCard from "../src/components/HotelCard";
 import MapContainer from "../src/components/MapContainer";
+import RestaurantsList from "../src/components/RestaurantsList.js";
 
 const drawerWidth = 360;
 
@@ -22,13 +17,6 @@ const useStyles = makeStyles(theme =>
     appBar: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0
-    },
-    drawerPaper: {
-      width: drawerWidth
     },
     toolbar: {
       textAlign: "center"
@@ -56,28 +44,7 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-        anchor="left"
-      >
-        <div className={classes.toolbar}>
-          <h2>Restaurants List</h2>
-        </div>
-
-        <Divider />
-
-        <List>
-          {hotels.map((hotel, index) => (
-            <ListItem button key={index}>
-              <HotelCard hotel={hotel}></HotelCard>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
+      <RestaurantsList></RestaurantsList>
 
       <main className={classes.content}>
         <MapContainer />
