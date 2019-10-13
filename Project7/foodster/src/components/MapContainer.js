@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
-import { MAP_API_KEY } from "../config.js";
+import { MAP_API_KEY, DINE_ICON, ZOOM } from "../config.js";
 
 const MapContainer = props => {
   const [state, setState] = useState({
@@ -27,7 +27,6 @@ const MapContainer = props => {
   };
 
   const onMarkerClick = (props, marker, e) => {
-    getPlaces();
     setState({
       ...state,
       selectedPlace: props,
@@ -42,18 +41,18 @@ const MapContainer = props => {
     }
   };
 
-  // const displayCurrentLocation = () => {
-  //   return (
-  //     <Marker
-  //       position={{
-  //         lat: state.location.latitude,
-  //         lng: state.location.longitude
-  //       }}
-  //       name={"Your location"}
-  //       onClick={onMarkerClick}
-  //     />
-  //   );
-  // };
+  const displayCurrentLocation = () => {
+    return (
+      <Marker
+        position={{
+          lat: state.location.latitude,
+          lng: state.location.longitude
+        }}
+        name={"Your location"}
+        onClick={onMarkerClick}
+      />
+    );
+  };
 
   const displayMarkers = () => {
     return state.places.map(place => {
@@ -66,6 +65,10 @@ const MapContainer = props => {
           }}
           name={place.name}
           onClick={onMarkerClick}
+          icon={{
+            url: DINE_ICON,
+            scaledSize: new props.google.maps.Size(22.5, 22.5)
+          }}
         />
       );
     });
@@ -76,7 +79,7 @@ const MapContainer = props => {
       {state.location.longitude && (
         <Map
           google={props.google}
-          zoom={18}
+          zoom={ZOOM}
           style={mapStyles}
           onReady={getPlaces}
           onClick={onMapClicked}
@@ -86,6 +89,7 @@ const MapContainer = props => {
           }}
         >
           {displayMarkers()}
+          {displayCurrentLocation()}
           <InfoWindow
             marker={state.activeMarker}
             visible={state.showingInfoWindow}
