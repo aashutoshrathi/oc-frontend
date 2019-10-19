@@ -11,12 +11,8 @@ const MapContainer = props => {
     places: []
   });
 
-  window.navigator.geolocation.getCurrentPosition(function getCoords(loc) {
-    setState({ ...state, location: loc.coords });
-  });
-
   const getPlaces = () => {
-    const { latitude, longitude } = state.location;
+    const { latitude, longitude } = props.location;
     const url = `http://foodster.glitch.me/getPlaces/${latitude}/${longitude}`;
     fetch(url)
       .then(res => res.json())
@@ -45,8 +41,8 @@ const MapContainer = props => {
     return (
       <Marker
         position={{
-          lat: state.location.latitude,
-          lng: state.location.longitude
+          lat: props.location.latitude,
+          lng: props.location.longitude
         }}
         name={"Your location"}
         onClick={onMarkerClick}
@@ -56,12 +52,13 @@ const MapContainer = props => {
 
   const displayMarkers = () => {
     return state.places.map(place => {
+      const { lat, lng } = place.geometry.location;
       return (
         <Marker
           key={place.place_id}
           position={{
-            lat: place.geometry.location.lat,
-            lng: place.geometry.location.lng
+            lat,
+            lng
           }}
           name={place.name}
           onClick={onMarkerClick}
@@ -76,7 +73,7 @@ const MapContainer = props => {
 
   return (
     <>
-      {state.location.longitude && (
+      {props.location.longitude && (
         <Map
           google={props.google}
           zoom={ZOOM}
@@ -84,8 +81,8 @@ const MapContainer = props => {
           onReady={getPlaces}
           onClick={onMapClicked}
           initialCenter={{
-            lat: state.location.latitude,
-            lng: state.location.longitude
+            lat: props.location.latitude,
+            lng: props.location.longitude
           }}
         >
           {displayMarkers()}
@@ -104,13 +101,8 @@ const MapContainer = props => {
   );
 };
 
-// const LoadingContainer = (props) => (
-//   <div>Fancy loading container!</div>
-// )
-
 export default GoogleApiWrapper({
   apiKey: MAP_API_KEY
-  // LoadingContainer: LoadingContainer
 })(MapContainer);
 
 const mapStyles = {

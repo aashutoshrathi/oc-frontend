@@ -1,11 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 import List from "@material-ui/core/List";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { getRestaurants } from "../store/actions/actions.js";
+
 import hotels from "../data/hotels.js";
 import RestaurantCard from "./RestaurantCard";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 const drawerWidth = 360;
 
@@ -20,14 +23,14 @@ const useStyles = makeStyles(theme =>
     },
     toolbar: {
       textAlign: "center"
-      // back
     }
   })
 );
 
 const RestaurantsList = props => {
   const classes = useStyles();
-
+  const { latitude, longitude } = props.location;
+  props.getRestaurants(latitude, longitude);
   return (
     <>
       <Drawer
@@ -56,4 +59,11 @@ const RestaurantsList = props => {
   );
 };
 
-export default RestaurantsList;
+const mapStateToProps = state => ({
+  state: state
+});
+
+export default connect(
+  mapStateToProps,
+  { getRestaurants }
+)(RestaurantsList);

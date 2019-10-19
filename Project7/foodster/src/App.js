@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -33,6 +33,14 @@ const useStyles = makeStyles(theme =>
 export default function App() {
   const classes = useStyles();
 
+  const [state, setState] = useState({
+    location: {},
+  });
+
+  window.navigator.geolocation.getCurrentPosition(function getCoords(loc) {
+    setState({ location: loc.coords });
+  });
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -44,10 +52,11 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      <RestaurantsList></RestaurantsList>
+      {/* self close a <Component /> if it's not a HOC */}
+      <RestaurantsList location={state.location}/>
 
       <main className={classes.content}>
-        <MapContainer />
+        <MapContainer location={state.location}/>
       </main>
     </div>
   );
