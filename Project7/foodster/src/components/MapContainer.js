@@ -31,7 +31,7 @@ const MapContainer = props => {
     });
   };
 
-  const onMapClicked = props => {
+  const onMapClicked = () => {
     if (state.showingInfoWindow) {
       setState({ ...state, showingInfoWindow: false, activeMarker: null });
     }

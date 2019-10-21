@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+
 import MapContainer from "../src/components/MapContainer";
 import RestaurantsList from "../src/components/RestaurantsList.js";
 
@@ -30,17 +33,19 @@ const useStyles = makeStyles(theme =>
   })
 );
 
-export default function App() {
+const App = () => {
   const classes = useStyles();
 
   const [state, setState] = useState({
-    location: {},
+    location: {}
   });
-
-  window.navigator.geolocation.getCurrentPosition(function getCoords(loc) {
-    setState({ location: loc.coords });
-  });
-
+  
+  useEffect(() => {
+    window.navigator.geolocation.getCurrentPosition(function getCoords(loc) {
+      setState({ location: loc.coords });
+    });  
+  }, [])
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -52,12 +57,16 @@ export default function App() {
         </Toolbar>
       </AppBar>
 
-      {/* self close a <Component /> if it's not a HOC */}
-      <RestaurantsList location={state.location}/>
+      <RestaurantsList location={state.location} />
 
       <main className={classes.content}>
-        <MapContainer location={state.location}/>
+        <MapContainer location={state.location} />
       </main>
     </div>
   );
-}
+};
+
+export default connect(
+  null,
+  {}
+)(App);

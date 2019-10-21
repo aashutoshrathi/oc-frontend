@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function RestaurantCard(props) {
   const classes = useStyles();
-  const hotel = props.hotel;
+  const { hotel } = props;
   return (
     <Card className={classes.card}>
       <CardHeader

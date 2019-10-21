@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import { setRestaurant } from './reducer.js';
+import { combineReducers } from "redux";
+import reducer from "./reducer";
 export default combineReducers({
-    setRestaurant
+  reducer
 });
