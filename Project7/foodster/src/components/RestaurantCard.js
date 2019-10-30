@@ -2,10 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
+import { refPic } from "../config";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -25,25 +25,44 @@ const useStyles = makeStyles(theme => ({
 
 export default function RestaurantCard(props) {
   const classes = useStyles();
-  const { hotel } = props;
+  const { restaurant } = props;
+  var title = restaurant.name;
+  if (restaurant.price_level) {
+    title += ` • ${"₹".repeat(restaurant.price_level)}`;
+  }
+  if (restaurant.rating) {
+    title += ` • ${restaurant.rating} Stars `;
+  }
+  if (restaurant.user_ratings_total) {
+    title += `(${restaurant.user_ratings_total} reviews)`;
+  }
   return (
     <Card className={classes.card}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {hotel.restaurantName[0]}
+            {restaurant.name[0]}
           </Avatar>
         }
-        title={hotel.restaurantName}
-        subheader={hotel.address}
+        title={title}
+        subheader={restaurant.vicinity.substring(0, 42)}
       />
-      <CardContent>
+      {restaurant.photos ? (
+        <CardMedia
+          className={classes.media}
+          image={refPic(restaurant.photos[0].photo_reference)}
+          title={restaurant.name}
+        />
+      ) : (
+        ""
+      )}
+      {/* <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like.
         </Typography>
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 }

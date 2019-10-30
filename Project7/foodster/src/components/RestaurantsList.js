@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import List from "@material-ui/core/List";
 import Drawer from "@material-ui/core/Drawer";
@@ -26,16 +26,15 @@ const useStyles = makeStyles(theme =>
 );
 
 const RestaurantsList = props => {
-  let hotels = [];
   const classes = useStyles();
   const { latitude, longitude } = props.location;
+  const { fetchRestaurants } = props;
 
   useEffect(() => {
-    props.dispatch(fetchRestaurants(latitude, longitude));
-  }, [latitude, longitude, props]);
+    fetchRestaurants(latitude, longitude);
+  }, [fetchRestaurants, latitude, longitude]);
 
   const { error, loading, restaurants } = props;
-
   return (
     <>
       <Drawer
@@ -48,25 +47,35 @@ const RestaurantsList = props => {
       >
         <div className={classes.toolbar}>
           <h2>Restaurants List</h2>
+          
         </div>
 
         <Divider />
-        <List>
-          {hotels.map((hotel, index) => (
-            <ListItem button key={index}>
-              <RestaurantCard hotel={hotel}></RestaurantCard>
-            </ListItem>
-          ))}
-        </List>
+        {loading ? "Loading" : ""}
+        {error ? "Error" : ""}
+        {restaurants ? (
+          <List>
+            {restaurants.map((restaurant, index) => (
+              <ListItem button key={index}>
+                <RestaurantCard restaurant={restaurant}></RestaurantCard>
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+          ""
+        )}
       </Drawer>
     </>
   );
 };
 
 const mapStateToProps = state => ({
-  restaurants: state.data,
-  error: state.error,
-  loading: state.loading
+  restaurants: state.reducer.data,
+  error: state.reducer.error,
+  loading: state.reducer.loading
 });
 
-export default connect(mapStateToProps)(RestaurantsList);
+export default connect(
+  mapStateToProps,
+  { fetchRestaurants }
+)(RestaurantsList);

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import store from "../store";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import { MAP_API_KEY, DINE_ICON, ZOOM } from "../config.js";
+import { fetchRestaurants } from "../store/actions/actions.js";
 
 const MapContainer = props => {
   const [state, setState] = useState({
@@ -11,15 +14,15 @@ const MapContainer = props => {
     places: []
   });
 
+  const gStore = store.getState().reducer;
+
   const getPlaces = () => {
-    const { latitude, longitude } = props.location;
-    const url = `http://foodster.glitch.me/getPlaces/${latitude}/${longitude}`;
-    fetch(url)
-      .then(res => res.json())
-      .then(res => {
-        setState({ ...state, places: res });
-      })
-      .catch(e => console.log(e));
+    setState({
+      ...state,
+      places: gStore.data,
+      loading: gStore.loading
+    });
+    console.log(state);
   };
 
   const onMarkerClick = (props, marker, e) => {
@@ -101,9 +104,18 @@ const MapContainer = props => {
   );
 };
 
-export default GoogleApiWrapper({
-  apiKey: MAP_API_KEY
-})(MapContainer);
+const mapStateToProps = state => ({
+  places: state.reducer.data
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchRestaurants }
+)(
+  GoogleApiWrapper({
+    apiKey: MAP_API_KEY
+  })(MapContainer)
+);
 
 const mapStyles = {
   width: `calc(100% - 360px)`,
