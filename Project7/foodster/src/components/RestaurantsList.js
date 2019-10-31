@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import List from "@material-ui/core/List";
+import Grid from "@material-ui/core/Grid";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
@@ -12,6 +14,12 @@ const drawerWidth = 360;
 
 const useStyles = makeStyles(theme =>
   createStyles({
+    root: {
+      display: "flex",
+      "& > * + *": {
+        marginLeft: theme.spacing(2)
+      }
+    },
     drawer: {
       width: drawerWidth,
       flexShrink: 0
@@ -47,16 +55,21 @@ const RestaurantsList = props => {
       >
         <div className={classes.toolbar}>
           <h2>Restaurants List</h2>
-          
         </div>
 
         <Divider />
-        {loading ? "Loading" : ""}
+        {loading ? (
+          <Grid container justify="center">
+            <CircularProgress />
+          </Grid>
+        ) : (
+          ""
+        )}
         {error ? "Error" : ""}
         {restaurants ? (
           <List>
-            {restaurants.map((restaurant, index) => (
-              <ListItem button key={index}>
+            {restaurants.map(restaurant => (
+              <ListItem button key={restaurant.place_id}>
                 <RestaurantCard restaurant={restaurant}></RestaurantCard>
               </ListItem>
             ))}

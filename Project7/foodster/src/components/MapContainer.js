@@ -22,7 +22,7 @@ const MapContainer = props => {
       places: gStore.data,
       loading: gStore.loading
     });
-    console.log(state);
+    // console.log(state);
   };
 
   const onMarkerClick = (props, marker, e) => {
