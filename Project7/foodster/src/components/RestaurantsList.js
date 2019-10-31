@@ -14,12 +14,6 @@ const drawerWidth = 360;
 
 const useStyles = makeStyles(theme =>
   createStyles({
-    root: {
-      display: "flex",
-      "& > * + *": {
-        marginLeft: theme.spacing(2)
-      }
-    },
     drawer: {
       width: drawerWidth,
       flexShrink: 0

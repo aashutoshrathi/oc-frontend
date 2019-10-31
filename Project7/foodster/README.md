@@ -1,8 +1,7 @@
 # foodster
 
-## ToDos
+## ToDos by 3rd Nov
 
 - Sync Restaurants List and Map
-- Add Review to existing restaurant
 - Add new Restaurants
-- Filters
+- Filters (Optional)
