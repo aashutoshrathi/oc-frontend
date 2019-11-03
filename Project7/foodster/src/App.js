@@ -36,16 +36,14 @@ const useStyles = makeStyles(theme =>
 const App = () => {
   const classes = useStyles();
 
-  const [state, setState] = useState({
-    location: {}
-  });
-  
+  const [location, setLocation] = useState({});
+
   useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(function getCoords(loc) {
-      setState({ location: loc.coords });
-    });  
-  }, [])
-  
+      setLocation(loc.coords);
+    });
+  }, []);
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -57,10 +55,10 @@ const App = () => {
         </Toolbar>
       </AppBar>
 
-      <RestaurantsList location={state.location} />
+      <RestaurantsList location={location} />
 
       <main className={classes.content}>
-        <MapContainer location={state.location} />
+        <MapContainer location={location} setLocation={setLocation} />
       </main>
     </div>
   );

@@ -35,23 +35,13 @@ export default function AddRestaurantForm(props) {
             variant="outlined"
             fullWidth
           />
-          <TextField
-            margin="dense"
-            id="description"
-            multiline
-            rows="2"
-            label="Restaurant Description"
-            type="text"
-            variant="outlined"
-            fullWidth
-          />
         </DialogContent>
         <DialogActions>
           <Button onClick={props.handleClose} color="primary">
             Cancel
           </Button>
           <Button onClick={props.addNewRestraunt} color="primary">
-            Submit
+            Add Restaurant
           </Button>
         </DialogActions>
       </Dialog>

@@ -30,7 +30,6 @@ export default function RestaurantCard(props) {
   const { restaurant } = props;
   var title = restaurant.name;
   const reviews = JSON.parse(localStorage.getItem(restaurant.place_id) || "[]");
-  // console.log(reviews);
 
   const refresh = () => {
     console.log(state);
@@ -41,7 +40,8 @@ export default function RestaurantCard(props) {
     title += ` • ${"₹".repeat(restaurant.price_level)}`;
   }
   if (restaurant.rating) {
-    title += ` • ${restaurant.rating} Stars `;
+    title += ` • ${Math.round(restaurant.rating*100)/100
+    } Stars `;
   }
   if (restaurant.user_ratings_total) {
     title += `(${restaurant.user_ratings_total} reviews)`;

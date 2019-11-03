@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
-import { MAP_API_KEY, DINE_ICON, ZOOM } from "../config.js";
+
 import { fetchRestaurants } from "../store/actions/actions.js";
-import store from "../store";
 import AddRestaurantForm from "./AddRestaurantForm";
+
+import { MAP_API_KEY, DINE_ICON, ZOOM } from "../config.js";
 
 const MapContainer = props => {
   const [state, setState] = useState({
@@ -15,15 +16,11 @@ const MapContainer = props => {
     places: []
   });
 
-  // props.google.maps.event.addListener(MapContainer, "click", function(event) {
-  //   var latitude = event.latLng.lat();
-  //   var longitude = event.latLng.lng();
-  //   console.log(latitude + ", " + longitude);
-  // });
+  const [open, setOpen] = useState(false);
+  const [geo, setGeo] = useState({});
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleDbClick = () => {
+  const handleDbClick = (e, a, loc) => {
+    setGeo({ location: { lat: loc.latLng.lat(), lng: loc.latLng.lng() } });
     setOpen(true);
   };
 
@@ -32,28 +29,22 @@ const MapContainer = props => {
   };
 
   const addNewRestraunt = () => {
-    const name = document.getElementById(`name-${props.id}`).value;
+    const name = document.getElementById("name").value;
+    const vicinity = document.getElementById("address").value;
+    const geometry = geo;
+    const place_id = JSON.parse(localStorage.getItem("count") || 0) + 1;
+    const restaurant = { name, vicinity, geometry, place_id };
+    const restaurants = JSON.parse(localStorage.getItem("restaurants") || "[]");
+    restaurants.push(restaurant);
 
-    const review = { name };
-
-    var oldReviews = JSON.parse(localStorage.getItem(props.id) || "[]");
-    oldReviews.push(review);
-
-    window.localStorage.setItem(props.id, JSON.stringify(oldReviews));
-
-    props.setOpen(false);
+    window.localStorage.setItem("restaurants", JSON.stringify(restaurants));
+    window.localStorage.setItem("count", JSON.stringify(place_id));
+    setOpen(false);
   };
 
-  const gStore = store.getState().reducer;
-  // console.log(gStore)
-
-  const getPlaces = () => {
-    setState({
-      ...state,
-      places: gStore.data,
-      loading: gStore.loading
-    });
-    // console.log(state);
+  const handleDrag = (e, a) => {
+    const { setLocation } = props;
+    setLocation({ latitude: a.center.lat(), longitude: a.center.lng() });
   };
 
   const onMarkerClick = (props, marker, e) => {
@@ -85,14 +76,14 @@ const MapContainer = props => {
   };
 
   const displayMarkers = () => {
-    return state.places.map(place => {
+    return props.places.map(place => {
       const { lat, lng } = place.geometry.location;
       return (
         <Marker
           key={place.place_id}
           position={{
-            lat,
-            lng
+            lng,
+            lat
           }}
           name={place.name}
           onClick={onMarkerClick}
@@ -116,10 +107,12 @@ const MapContainer = props => {
         <Map
           google={props.google}
           zoom={ZOOM}
+          disableDoubleClickZoom={true}
           style={mapStyles}
-          onReady={getPlaces}
+          onReady={displayMarkers}
           onClick={onMapClicked}
           onDblclick={handleDbClick}
+          onDragend={handleDrag}
           initialCenter={{
             lat: props.location.latitude,
             lng: props.location.longitude

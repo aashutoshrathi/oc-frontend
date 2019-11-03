@@ -4,10 +4,14 @@ import { API_URL } from "../../config";
 export const fetchRestaurants = (lat, long) => {
   return dispatch => {
     dispatch(fetchBegin());
+    const localRestaurants = JSON.parse(
+      localStorage.getItem("restaurants") || "[]"
+    );
     fetch(`${API_URL}${lat}/${long}`)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
+        json = [...localRestaurants, ...json];
         dispatch(fetchSuccess(json));
         return json;
       })
