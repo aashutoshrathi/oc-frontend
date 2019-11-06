@@ -1,6 +1,6 @@
-const imageDir = `https://aashutoshrathi.tk/oc-frontend/Project6/images/`;
+const imageDir = `https://aashutoshrathi.github.io/oc-frontend/Project6/images/`;
 const weaponImages =
-  "https://aashutoshrathi.tk/oc-frontend/Project6/images/weapons/";
+  "https://aashutoshrathi.github.io/oc-frontend/Project6/images/weapons/";
 
 const hurdleBlock = `<img src="${imageDir}pipe.png?q=1"></img>`;
 const BOARD_SIZE = 10;
