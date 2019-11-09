@@ -9,7 +9,7 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-import { fetchRestaurants } from "../store/actions/actions.js";
+import { fetchRestaurants, addRestaurant, filterRestaurants } from "../store/actions/actions.js";
 import RestaurantCard from "./RestaurantCard";
 import Filter from "./Filter.js";
 
@@ -52,7 +52,7 @@ const RestaurantsList = props => {
       >
         <div className={classes.toolbar}>
           <h2>Restaurants List</h2>
-          <Filter />
+          <Filter filter={props.filterRestaurants}/>
         </div>
 
         <Divider />
@@ -67,7 +67,7 @@ const RestaurantsList = props => {
         {restaurants ? (
           <List>
             {restaurants.map(restaurant => (
-              <ListItem button key={restaurant.place_id}>
+              <ListItem button key={restaurant.place_id} disableRipple>
                 <RestaurantCard restaurant={restaurant}></RestaurantCard>
               </ListItem>
             ))}
@@ -88,5 +88,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchRestaurants }
+  { fetchRestaurants, addRestaurant, filterRestaurants }
 )(RestaurantsList);

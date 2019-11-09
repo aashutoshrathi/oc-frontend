@@ -1,5 +1,13 @@
-import { FETCH_BEGIN, FETCH_SUCCESS, FETCH_FAILURE, ADD_REVIEW } from "./types";
-import { API_URL } from "../../config";
+import {
+  FETCH_BEGIN,
+  FETCH_SUCCESS,
+  FETCH_DETAIL_SUCCESS,
+  FETCH_FAILURE,
+  ADD_REVIEW,
+  ADD_RESTAURANT,
+  FILTER_RESTAURANTS
+} from "./types";
+import { API_URL, DETAIL_URL } from "../../config";
 
 export const fetchRestaurants = (lat, long) => {
   return dispatch => {
@@ -19,17 +27,47 @@ export const fetchRestaurants = (lat, long) => {
   };
 };
 
-export const addReview = (rating, name, title, comment, restaurantId) => {
-  const review = { name, rating, title, comment, restaurantId };
+export const fetchDetail = id => {
   return dispatch => {
-    dispatch(addReviewAction(review));
-    return review;
+    fetch(`${DETAIL_URL}${id}`)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        console.log(json);
+        dispatch(fetchDetailSuccess(json));
+        return json;
+      })
+      .catch(err => console.log(err));
   };
 };
+
+export const addRestaurant = restaurant => {
+  return dispatch => dispatch(addRestaurantAction(restaurant));
+};
+
+export const addReview = review => {
+  return dispatch => dispatch(addReviewAction(review));
+};
+
+export const filterRestaurants = (min, max) => {
+  return dispatch => dispatch(filterRestaurantsAction(min, max));
+};
+
+
 
 export const addReviewAction = review => ({
   type: ADD_REVIEW,
   payload: { review }
+});
+
+export const addRestaurantAction = restaurant => ({
+  type: ADD_RESTAURANT,
+  payload: { restaurant }
+});
+
+export const filterRestaurantsAction = (min, max) => ({
+  type: FILTER_RESTAURANTS,
+  payload: { min, max }
 });
 
 export const fetchBegin = () => ({
@@ -38,6 +76,11 @@ export const fetchBegin = () => ({
 
 export const fetchSuccess = data => ({
   type: FETCH_SUCCESS,
+  payload: { data }
+});
+
+export const fetchDetailSuccess = data => ({
+  type: FETCH_DETAIL_SUCCESS,
   payload: { data }
 });
 

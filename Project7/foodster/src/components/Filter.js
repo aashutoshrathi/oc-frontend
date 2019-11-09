@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -36,12 +37,15 @@ const marks = [
   }
 ];
 
-const Filter = () => {
+const Filter = props => {
   const classes = useStyles();
   const [value, setValue] = useState([0, 5]);
 
-  const handleChange = (e, newValue) => {
-    setValue(newValue);
+  const handleChange = (e, vals) => {
+    setValue(vals);
+    const min = Math.min(...vals);
+    const max = Math.max(...vals);
+    props.filter(min, max);
   };
 
   return (

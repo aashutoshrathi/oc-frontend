@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -6,19 +7,17 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import IconButton from "@material-ui/core/IconButton";
-import RateReviewIcon from "@material-ui/icons/RateReview";
 
-export default function AddReviewForm(props) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+const AddReviewForm = props => {
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
-  };
+  }
+
+  const handleOpen = () => {
+    setOpen(true);
+  }
 
   const getRating = () => {
     for (let i = 5; i > 0; i--) {
@@ -35,23 +34,19 @@ export default function AddReviewForm(props) {
     const comment = document.getElementById(`comment-${props.id}`).value;
     const title = document.getElementById(`title-${props.id}`).value;
     const rating = getRating();
+    const review = { name, comment, title, rating, restaurantId: props.id };
 
-    const review = { name, comment, title, rating };
-
-    var oldReviews = JSON.parse(localStorage.getItem(props.id) || "[]");
-    oldReviews.push(review);
-
-    window.localStorage.setItem(props.id, JSON.stringify(oldReviews));
+    console.log(review);
+    props.addReview(review);
 
     setOpen(false);
-    props.refresh();
   };
 
   return (
     <div>
-      <IconButton aria-label="Add Review" onClick={handleClickOpen}>
-        <RateReviewIcon />
-      </IconButton>
+      <Button size="small" color="primary" onClick={handleOpen}>
+        Add Review
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -149,4 +144,6 @@ export default function AddReviewForm(props) {
       </Dialog>
     </div>
   );
-}
+};
+
+export default AddReviewForm;

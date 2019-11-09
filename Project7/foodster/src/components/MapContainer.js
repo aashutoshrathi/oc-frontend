@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 import Geocode from "react-geocode";
 
-import { fetchRestaurants } from "../store/actions/actions.js";
+import { fetchRestaurants, addRestaurant } from "../store/actions/actions.js";
 import AddRestaurantForm from "./AddRestaurantForm";
 
 import { MAP_API_KEY, DINE_ICON, ZOOM } from "../config.js";
@@ -46,11 +46,7 @@ const MapContainer = props => {
     const geometry = geo;
     const place_id = JSON.parse(localStorage.getItem("count") || 0) + 1;
     const restaurant = { name, vicinity, geometry, place_id };
-    const restaurants = JSON.parse(localStorage.getItem("restaurants") || "[]");
-    restaurants.push(restaurant);
-
-    window.localStorage.setItem("restaurants", JSON.stringify(restaurants));
-    window.localStorage.setItem("count", JSON.stringify(place_id));
+    props.addRestaurant(restaurant);
     setOpen(false);
   };
 
@@ -153,7 +149,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchRestaurants }
+  { fetchRestaurants, addRestaurant }
 )(
   GoogleApiWrapper({
     apiKey: MAP_API_KEY
