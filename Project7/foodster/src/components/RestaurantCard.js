@@ -4,10 +4,11 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
-import AddReviewForm from "./AddReviewForm";
-import ReviewList from "./ReviewList";
 import Avatar from "@material-ui/core/Avatar";
 import { red } from "@material-ui/core/colors";
+
+import AddReviewForm from "./AddReviewForm";
+import ReviewList from "./ReviewList";
 import { refPic } from "../config";
 
 const useStyles = makeStyles(theme => ({
@@ -40,8 +41,7 @@ export default function RestaurantCard(props) {
     title += ` • ${"₹".repeat(restaurant.price_level)}`;
   }
   if (restaurant.rating) {
-    title += ` • ${Math.round(restaurant.rating*100)/100
-    } Stars `;
+    title += ` • ${Math.round(restaurant.rating * 100) / 100} Stars `;
   }
   if (restaurant.user_ratings_total) {
     title += `(${restaurant.user_ratings_total} reviews)`;
@@ -65,7 +65,11 @@ export default function RestaurantCard(props) {
           title={restaurant.name}
         />
       ) : (
-        ""
+        <CardMedia
+          className={classes.media}
+          image="../res-fallback.jpg"
+          title={restaurant.name}
+        />
       )}
       <CardActions disableSpacing>
         <AddReviewForm

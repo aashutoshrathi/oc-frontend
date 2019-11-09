@@ -1,4 +1,4 @@
-import { FETCH_BEGIN, FETCH_SUCCESS, FETCH_FAILURE } from "./types";
+import { FETCH_BEGIN, FETCH_SUCCESS, FETCH_FAILURE, ADD_REVIEW } from "./types";
 import { API_URL } from "../../config";
 
 export const fetchRestaurants = (lat, long) => {
@@ -18,6 +18,19 @@ export const fetchRestaurants = (lat, long) => {
       .catch(err => dispatch(fetchFailure(err)));
   };
 };
+
+export const addReview = (rating, name, title, comment, restaurantId) => {
+  const review = { name, rating, title, comment, restaurantId };
+  return dispatch => {
+    dispatch(addReviewAction(review));
+    return review;
+  };
+};
+
+export const addReviewAction = review => ({
+  type: ADD_REVIEW,
+  payload: { review }
+});
 
 export const fetchBegin = () => ({
   type: FETCH_BEGIN

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+
 import List from "@material-ui/core/List";
 import Grid from "@material-ui/core/Grid";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -7,8 +8,10 @@ import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
+
 import { fetchRestaurants } from "../store/actions/actions.js";
 import RestaurantCard from "./RestaurantCard";
+import Filter from "./Filter.js";
 
 const drawerWidth = 360;
 
@@ -22,7 +25,7 @@ const useStyles = makeStyles(theme =>
       width: drawerWidth
     },
     toolbar: {
-      textAlign: "center"
+      textAlign: "center",
     }
   })
 );
@@ -49,6 +52,7 @@ const RestaurantsList = props => {
       >
         <div className={classes.toolbar}>
           <h2>Restaurants List</h2>
+          <Filter />
         </div>
 
         <Divider />

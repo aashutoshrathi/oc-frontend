@@ -26,8 +26,8 @@ const MapContainer = props => {
   const handleDbClick = (e, a, loc) => {
     setGeo({ location: { lat: loc.latLng.lat(), lng: loc.latLng.lng() } });
     Geocode.fromLatLng(loc.latLng.lat(), loc.latLng.lng()).then(
-      response => {
-        setAddress(response.results[0].formatted_address);
+      res => {
+        setAddress(res.results[0].formatted_address);
       },
       error => {
         console.error(error);
