@@ -33,6 +33,7 @@ export default function AddRestaurantForm(props) {
             label="Restaurant Address"
             type="text"
             variant="outlined"
+            value={props.address}
             fullWidth
           />
         </DialogContent>

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import Geocode from "react-geocode";
 
 import { fetchRestaurants } from "../store/actions/actions.js";
 import AddRestaurantForm from "./AddRestaurantForm";
 
 import { MAP_API_KEY, DINE_ICON, ZOOM } from "../config.js";
+
+Geocode.setApiKey(MAP_API_KEY);
 
 const MapContainer = props => {
   const [state, setState] = useState({
@@ -18,9 +21,18 @@ const MapContainer = props => {
 
   const [open, setOpen] = useState(false);
   const [geo, setGeo] = useState({});
+  const [address, setAddress] = useState({});
 
   const handleDbClick = (e, a, loc) => {
     setGeo({ location: { lat: loc.latLng.lat(), lng: loc.latLng.lng() } });
+    Geocode.fromLatLng(loc.latLng.lat(), loc.latLng.lng()).then(
+      response => {
+        setAddress(response.results[0].formatted_address);
+      },
+      error => {
+        console.error(error);
+      }
+    );
     setOpen(true);
   };
 
@@ -102,6 +114,7 @@ const MapContainer = props => {
         open={open}
         handleClose={handleClose}
         addNewRestraunt={addNewRestraunt}
+        address={address}
       />
       {props.location.longitude && (
         <Map
