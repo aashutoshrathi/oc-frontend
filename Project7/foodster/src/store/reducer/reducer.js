@@ -52,7 +52,8 @@ const reducer = (state = initialState, action) => {
     case ADD_RESTAURANT:
       return {
         ...state,
-        data: [...state.data, action.payload.restaurant]
+        data: [...state.data, action.payload.restaurant],
+        filteredData: [...state.filteredData, action.payload.restaurant]
       };
     case FILTER_RESTAURANTS:
       const { min, max } = action.payload;
