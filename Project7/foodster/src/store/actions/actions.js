@@ -5,16 +5,17 @@ import {
   FETCH_FAILURE,
   ADD_REVIEW,
   ADD_RESTAURANT,
-  FILTER_RESTAURANTS
+  FILTER_RESTAURANTS,
+  FETCH_DETAIL_BEGIN
 } from "./types";
 import { API_URL, DETAIL_URL } from "../../config";
+var resFile = require('../../restaurants.json');
 
 export const fetchRestaurants = (lat, long) => {
   return dispatch => {
     dispatch(fetchBegin());
-    const localRestaurants = JSON.parse(
-      localStorage.getItem("restaurants") || "[]"
-    );
+    const string = JSON.stringify(resFile)
+    const localRestaurants = JSON.parse(string);
     fetch(`${API_URL}${lat}/${long}`)
       .then(handleErrors)
       .then(res => res.json())
@@ -29,11 +30,12 @@ export const fetchRestaurants = (lat, long) => {
 
 export const fetchDetail = id => {
   return dispatch => {
+    dispatch(fetchDetailBegin());
     fetch(`${DETAIL_URL}${id}`)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         dispatch(fetchDetailSuccess(json));
         return json;
       })
@@ -82,6 +84,10 @@ export const fetchSuccess = data => ({
 export const fetchDetailSuccess = data => ({
   type: FETCH_DETAIL_SUCCESS,
   payload: { data }
+});
+
+export const fetchDetailBegin = data => ({
+  type: FETCH_DETAIL_BEGIN,
 });
 
 export const fetchFailure = err => ({

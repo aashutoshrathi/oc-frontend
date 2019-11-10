@@ -1,0 +1,58 @@
+[
+  {
+    "geometry": {
+      "location": { "lat": 23.19611459999999, "lng": 72.63363 },
+      "viewport": {
+        "northeast": { "lat": 23.1973242302915, "lng": 72.6349659302915 },
+        "southwest": { "lat": 23.19462626970849, "lng": 72.6322679697085 }
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "a2bb71e50d6057b2360ea52e79066b03ca14f267",
+    "name": "Restraunt from JSON",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 305,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100373662619615613817/photos\">Chatkazz</a>"
+        ],
+        "photo_reference": "CmRaAAAApu_zMu9FT7rh2Qxv_VX7NjGwYQAQbg7cm6OWXUNJpKUqv8WusTdlUa4-y5KTz6C1B6n7zqS9sEvUO9zsshaIMl-G6XNsCi-lugVl1gNqproPqZB3HjGlAzOC5gs5cB-pEhB7Y1vQ9eZPdDyf-GwXBOT4GhTPfjNsGW6wS5ZjATfj6R1P8fGx4w",
+        "width": 470
+      }
+    ],
+    "place_id": "ChIJ____v1srXDkRncc6EnoCWsw",
+    "price_level": 2,
+    "rating": 3.7,
+    "user_ratings_total": 62,
+    "vicinity": "19, Ground floor, Super Mall 1, Infocity, Gandhinagar"
+  },
+  {
+    "geometry": {
+      "location": { "lat": 23.19622, "lng": 72.63363 },
+      "viewport": {
+        "northeast": { "lat": 23.1973242302915, "lng": 72.6349659302915 },
+        "southwest": { "lat": 23.19462626970849, "lng": 72.6322679697085 }
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "a2bb71e50d6057b2360ea52e79066b03ca14f267",
+    "name": "Restraunt from JSON Two",
+    "opening_hours": { "open_now": true },
+    "photos": [
+      {
+        "height": 305,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/100373662619615613817/photos\">Chatkazz</a>"
+        ],
+        "photo_reference": "CmRaAAAApu_zMu9FT7rh2Qxv_VX7NjGwYQAQbg7cm6OWXUNJpKUqv8WusTdlUa4-y5KTz6C1B6n7zqS9sEvUO9zsshaIMl-G6XNsCi-lugVl1gNqproPqZB3HjGlAzOC5gs5cB-pEhB7Y1vQ9eZPdDyf-GwXBOT4GhTPfjNsGW6wS5ZjATfj6R1P8fGx4w",
+        "width": 470
+      }
+    ],
+    "place_id": "ChIJf97gxfsrXDkRwE2ub23Y5uM",
+    "price_level": 5,
+    "rating": 4.7,
+    "user_ratings_total": 88,
+    "vicinity": "Tangent, Sargasan"
+  }
+]

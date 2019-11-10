@@ -13,11 +13,11 @@ const AddReviewForm = props => {
 
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   const handleOpen = () => {
     setOpen(true);
-  }
+  };
 
   const getRating = () => {
     for (let i = 5; i > 0; i--) {
@@ -30,13 +30,12 @@ const AddReviewForm = props => {
   };
 
   const submitReview = () => {
-    const name = document.getElementById(`name-${props.id}`).value;
-    const comment = document.getElementById(`comment-${props.id}`).value;
-    const title = document.getElementById(`title-${props.id}`).value;
+    const author_name = document.getElementById(`name-${props.id}`).value;
+    const text = document.getElementById(`comment-${props.id}`).value;
     const rating = getRating();
-    const review = { name, comment, title, rating, restaurantId: props.id };
+    const time = new Date();
+    const review = { author_name, text, rating, restaurantId: props.id, time };
 
-    console.log(review);
     props.addReview(review);
 
     setOpen(false);
@@ -110,14 +109,6 @@ const AddReviewForm = props => {
             margin="dense"
             id={`name-${props.id}`}
             label="Your Name"
-            type="text"
-            variant="outlined"
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id={`title-${props.id}`}
-            label="Title"
             type="text"
             variant="outlined"
             fullWidth

@@ -144,7 +144,7 @@ const MapContainer = props => {
 };
 
 const mapStateToProps = state => ({
-  places: state.reducer.data
+  places: state.reducer.filteredData
 });
 
 export default connect(

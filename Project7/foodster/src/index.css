@@ -14,6 +14,21 @@ code {
     monospace;
 }
 
+.details-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.details-row-span {
+  align-self: center;
+  margin-left: 1rem;
+}
+
+.parent-row div {
+  padding: 0;
+  margin: 0;
+}
+
 div.stars {
   width: 270px;
   display: inline-block;

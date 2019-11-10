@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
@@ -11,6 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { red } from "@material-ui/core/colors";
 
 import AddReviewForm from "./AddReviewForm";
+import RestaurantDetails from "./RestaurantDetail";
 import { addReview, fetchDetail } from "../store/actions/actions.js";
 import ReviewList from "./ReviewList";
 import { refPic } from "../config";
@@ -33,11 +33,9 @@ const RestaurantCard = props => {
   const classes = useStyles();
   const { restaurant } = props;
   var title = restaurant.name;
-  const reviews = props.reviews;
-
-  const getDetails = () => {
-    props.fetchDetail(restaurant.place_id);
-  }
+  const reviews = props.reviews.filter(
+    res => res.restaurantId === restaurant.place_id
+  );
 
   if (restaurant.price_level) {
     title += ` • ${"₹".repeat(restaurant.price_level)}`;
@@ -80,9 +78,12 @@ const RestaurantCard = props => {
           id={restaurant.place_id}
           addReview={props.addReview}
         />
-        <Button size="small" color="primary" onClick={getDetails}>
-          View More
-        </Button>
+        <RestaurantDetails
+          restaurant={restaurant}
+          loading={props.loading}
+          getDetails={props.fetchDetail}
+          details={props.details}
+        />
       </CardActions>
       <ReviewList reviews={reviews} />
     </Card>
@@ -90,7 +91,9 @@ const RestaurantCard = props => {
 };
 
 const mapStateToProps = state => ({
-  reviews: state.reducer.reviews
+  reviews: state.reducer.reviews,
+  loading: state.reducer.detailLoading,
+  details: state.reducer.details
 });
 
 export default connect(

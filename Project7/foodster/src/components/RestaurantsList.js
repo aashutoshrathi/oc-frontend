@@ -9,7 +9,11 @@ import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-import { fetchRestaurants, addRestaurant, filterRestaurants } from "../store/actions/actions.js";
+import {
+  fetchRestaurants,
+  addRestaurant,
+  filterRestaurants
+} from "../store/actions/actions.js";
 import RestaurantCard from "./RestaurantCard";
 import Filter from "./Filter.js";
 
@@ -25,7 +29,7 @@ const useStyles = makeStyles(theme =>
       width: drawerWidth
     },
     toolbar: {
-      textAlign: "center",
+      textAlign: "center"
     }
   })
 );
@@ -52,7 +56,7 @@ const RestaurantsList = props => {
       >
         <div className={classes.toolbar}>
           <h2>Restaurants List</h2>
-          <Filter filter={props.filterRestaurants}/>
+          <Filter filter={props.filterRestaurants} />
         </div>
 
         <Divider />
@@ -81,7 +85,7 @@ const RestaurantsList = props => {
 };
 
 const mapStateToProps = state => ({
-  restaurants: state.reducer.data,
+  restaurants: state.reducer.filteredData,
   error: state.reducer.error,
   loading: state.reducer.loading
 });
