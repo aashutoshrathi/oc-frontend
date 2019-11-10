@@ -45,7 +45,7 @@ const MapContainer = props => {
     const vicinity = document.getElementById("address").value;
     const geometry = geo;
     const place_id = JSON.parse(localStorage.getItem("count") || 0) + 1;
-    const restaurant = { name, vicinity, geometry, place_id };
+    const restaurant = { name, vicinity, geometry, place_id, rating: 3, user_ratings_total: 1 };
     props.addRestaurant(restaurant);
     setOpen(false);
   };
