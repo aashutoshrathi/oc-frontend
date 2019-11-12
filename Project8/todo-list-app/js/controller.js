@@ -162,12 +162,13 @@
 			items = data;
 		});
 
+		// this stops as soon as element with ID is found
 		var found = items.find(function(item) {
 			return item.id === id;
 		})
 
 		if(found) {
-			console.log("Element with ID: " + id + " has been removed.");
+			// console.log("Element with ID: " + id + " has been removed.");
 			self.model.remove(id, function () {
 				self.view.render('removeItem', id);
 			});

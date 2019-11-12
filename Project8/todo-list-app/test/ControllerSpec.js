@@ -60,6 +60,12 @@ describe('controller', function () {
 
 	it('should show entries on start-up', function () {
 		// TODO: write test
+		var todo = { title: 'my todo' };
+		setUpModel([todo]);
+	
+		subject.setView('');
+	
+		expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
 	});
 
 	describe('routing', function () {
@@ -84,6 +90,18 @@ describe('controller', function () {
 
 		it('should show active entries', function () {
 			// TODO: write test
+			var todo = { title: 'my todo', completed: false };
+			var anotherTodo = { title: 'another todo', completed: true };
+			setUpModel([todo, anotherTodo]);
+
+			subject.setView('#/active');
+
+			expect(model.read).toHaveBeenCalledWith(
+				{ completed: false },
+				jasmine.any(Function)
+			);
+
+			expect(view.render).toHaveBeenCalledWith('showEntries', [todo, anotherTodo]);
 		});
 
 		it('should show completed entries', function () {
