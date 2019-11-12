@@ -162,17 +162,18 @@
 			items = data;
 		});
 
-		items.forEach(function(item) {
-			if (item.id === id) {
-				console.log("Element with ID: " + id + " has been removed.");
-			}
-		});
+		var found = items.find(function(item) {
+			return item.id === id;
+		})
 
-		self.model.remove(id, function () {
-			self.view.render('removeItem', id);
-		});
-
-		self._filter();
+		if(found) {
+			console.log("Element with ID: " + id + " has been removed.");
+			self.model.remove(id, function () {
+				self.view.render('removeItem', id);
+			});
+	
+			self._filter();
+		}
 	};
 
 	/**
