@@ -93,8 +93,8 @@
           break;
         }
       }
-
-	  callback.call(this, todos);
+      localStorage[this._dbName] = JSON.stringify(data);
+      callback.call(this, todos);
     } else {
       // EDIT: Move new ID Generation here.
       // Generate an ID
@@ -108,9 +108,9 @@
       updateData.id = parseInt(newId);
 
       todos.push(updateData);
+      localStorage[this._dbName] = JSON.stringify(data);
       callback.call(this, [updateData]);
     }
-	localStorage[this._dbName] = JSON.stringify(data); // Moved this outside if else as it is common
   };
 
   /**
@@ -132,7 +132,7 @@
     // }
 
     for (var i = 0; i < todos.length; i++) {
-      if (todos[i].id == todoId) {
+      if (todos[i].id == id) {
         todos.splice(i, 1);
       }
     }
