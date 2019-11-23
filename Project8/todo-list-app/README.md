@@ -1,4 +1,9 @@
-# Bugs
+# OC Project 8
+
+In this project, an already existing codebase is provided by OpenClassroom.
+The codebase belongs to the famous [TodoMVC](http://todomvc.com/) Project, the language they chose was Vanilla JS.
+
+## Bugs
 
 - /js/controller.js: Line 95
 
@@ -7,14 +12,7 @@
     -Controller.prototype.adddItem = function (title) {
     ```
 
-- /js/app.js: Line 14
-
-    ```diff
-    +this.view = new app.View(this.template);
-    -this.fview = new app.View(this.template);
-    ```
-
-# Loops optimized
+## Loops optimized
 
 - /js/controller.js: Line 165
   
