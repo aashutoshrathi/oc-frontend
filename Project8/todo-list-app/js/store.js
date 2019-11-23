@@ -79,7 +79,7 @@
    */
   Store.prototype.save = function(updateData, callback, id) {
     var data = JSON.parse(localStorage[this._dbName]);
-    var todos = data.todos;
+    var { todos } = data;
 
     callback = callback || function() {};
 
@@ -100,9 +100,18 @@
       // Generate an ID
       var newId = "";
       var charset = "0123456789";
+      let isUnique = false;
 
-      for (var i = 0; i < 6; i++) {
-        newId += charset.charAt(Math.floor(Math.random() * charset.length));
+      while (!isUnique) {
+        for (var i = 0; i < 6; i++) {
+          newId += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+        isUnique = true;
+        todos.forEach(todo => {
+          if (todo.id === newId) {
+            isUnique = false;
+          }
+        });
       }
       // Assign an ID
       updateData.id = parseInt(newId);
